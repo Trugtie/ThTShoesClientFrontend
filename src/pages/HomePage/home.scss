@@ -1,0 +1,54 @@
+section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.container {
+  font-family: var(--main-font);
+  width: 100%;
+  max-width: 1250px;
+}
+// Hero
+
+.hero-section {
+  background: url(../../assets/Hero-bg.png) no-repeat center;
+  background-size: cover;
+  color: white;
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.6);
+}
+
+.hero-title {
+  font-size: 3rem;
+  text-align: left;
+  margin-top: 11rem;
+  margin-bottom: 1.2rem;
+}
+
+.hero-description {
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-align: left;
+  width: 40rem;
+  margin-bottom: 4rem;
+}
+
+.hero-btn {
+  text-align: left;
+}
+// Categories section
+
+.categories-header-title {
+  color: var(--main-font-color);
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 42px;
+  margin:82px 0px;
+}
+
+// Shoes section
+
+.shoes-section{
+background-color:var(--second-bg-color);
+padding: 34px 0px;
+}
