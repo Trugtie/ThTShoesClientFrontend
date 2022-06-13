@@ -1,9 +1,10 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+import { useState } from "react";
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import Slider from "../Slider"
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -17,8 +18,12 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+        <Box sx={{ p: 0 }}>
+          <Typography
+          sx={{
+            height:'823px'
+          }}
+          >{children}</Typography>
         </Box>
       )}
     </div>
@@ -34,34 +39,50 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
   };
 }
 
 export default function ShowcaseTab() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+    <Box sx={{ width: "100%" }}>
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          centered
+          sx={{
+            "& .MuiTab-root": {
+              color: "black",
+              fontSize:'20px',
+              fontWeight:'700'
+            },
+            "& .MuiTab-root.Mui-selected": {
+              color: "white",
+              fontWeight: "700",
+              backgroundColor:'black',
+              transition:'all .3s',
+            },
+            "& .MuiTabs-indicator": {
+              display:'none',
+            },
+          }}
+        >
+          <Tab label="SẢN PHẨM MỚI" {...a11yProps(0)} />
+          <Tab label="SẢN PHẨM BÁN CHẠY" {...a11yProps(1)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Item One
+        <Slider/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
+      <Slider/>
       </TabPanel>
     </Box>
   );

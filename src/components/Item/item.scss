@@ -1,0 +1,30 @@
+.item-container {
+  width: 331px;
+  height: 346px;
+}
+
+.item-image {
+  height: 210px;
+}
+
+.item-title {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+  align-items: center;
+  padding: 4px 0px;
+}
+
+.item-price {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  align-items: center;
+  padding-bottom: 7px;
+  color: #c00000;
+}
+
+.item-button-group{
+  display: flex;
+  justify-content: space-around
+}

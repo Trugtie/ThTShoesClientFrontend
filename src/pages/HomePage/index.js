@@ -10,7 +10,7 @@ import ShowcaseTab from "../../components/ShowcaseTab";
 export default function HomePage() {
   return (
     <div className="homepage-container">
-        {/* Hero */}
+      {/* Hero */}
       <section className="hero-section">
         <div className="container">
           <h1 className="hero-title">
@@ -63,6 +63,12 @@ export default function HomePage() {
       <section className="shoes-section">
         <div className="container">
           <ShowcaseTab />
+        </div>
+      </section>
+      {/* Divider Section */}
+      <section className="divider-section">
+        <div className="container">
+          
         </div>
       </section>
     </div>

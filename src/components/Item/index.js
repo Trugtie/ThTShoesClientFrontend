@@ -1,0 +1,37 @@
+import './item.scss'
+import Button from '@mui/material/Button';
+
+export default function Item(){
+    return (
+        <div className='item-container'>
+            <div className='item-image'
+            style={{
+                backgroundImage:'url(http://placehold.jp/331x210.png)'
+            }}
+            ></div>
+            <div className='item-description'>
+                <div className='item-title'>Chuck Taylor Classic</div>
+                <div className='item-price'>1,250,000 đ</div>
+            </div>
+            <div className='item-button-group'>
+            <Button variant="contained"
+            sx={{
+                width:'192px',
+                backgroundColor:'var(--button-third-color)',
+                "&:hover":{
+                    backgroundColor:'var(--button-first-color)'
+                }
+            }}
+            >Xem chi tiết</Button>
+            <Button variant="contained"
+             sx={{
+                backgroundColor:'var(--button-second-color)',
+                "&:hover":{
+                    backgroundColor:'var(--button-first-color)'
+                }
+            }}
+            >Contained</Button>
+            </div>
+        </div>
+    )
+}
