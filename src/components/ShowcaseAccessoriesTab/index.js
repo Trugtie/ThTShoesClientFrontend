@@ -43,7 +43,7 @@ function a11yProps(index) {
   };
 }
 
-export default function ShowcaseTab() {
+export default function ShowcaseAccessoriesTab() {
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -61,28 +61,29 @@ export default function ShowcaseTab() {
             "& .MuiTab-root": {
               color: "black",
               fontSize:'20px',
-              fontWeight:'700'
+              fontWeight:'700',
+              padding:'0px',
+              justifyContent: 'flex-end',
             },
             "& .MuiTab-root.Mui-selected": {
-              color: "white",
+              color: "black",
               fontWeight: "700",
-              backgroundColor:'black',
               transition:'all .3s',
             },
+            "& .MuiTab-root:hover": {
+                cursor:'default',
+            }
+            ,
             "& .MuiTabs-indicator": {
               display:'none',
             },
           }}
         >
-          <Tab label="SẢN PHẨM MỚI" {...a11yProps(0)} />
-          <Tab label="SẢN PHẨM BÁN CHẠY" {...a11yProps(1)} />
+          <Tab label="PHỤ KIỆN" {...a11yProps(0)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <Slider/>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-      <Slider/>
+        <Slider bg='myswiper--second'/>
       </TabPanel>
     </Box>
   );

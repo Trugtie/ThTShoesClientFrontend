@@ -1,3 +1,8 @@
+@mixin icon-wrapper{
+    display:inline-block;
+    position: relative;
+  }
+
 header{
     margin-bottom:138px;
 }
@@ -26,9 +31,6 @@ header{
     display: inline-block;
     color:white;
     flex-basis: 10rem;
-    svg:nth-child(2){
-    margin: 0 1rem;
-    }
 }
 
 .nav-list{
@@ -40,4 +42,52 @@ header{
 .nav-button{
     flex-basis: 10rem;
     color:white;
+}
+
+.person-menu-dropdown{
+    color:black;
+    position: absolute;
+    right:20%;
+    background-color:white;
+    width: 150px;
+    height:0;
+    transition: all .3s;
+    opacity: 0;
+    .person-btn{
+        display: none;
+    }
+}
+
+.person-menu{
+    @include icon-wrapper;
+}
+
+.person-icon{
+    cursor: pointer;
+}
+
+.person-menu:hover{
+    .person-menu-dropdown{
+        opacity: 1;
+        height:97px;
+        .person-btn{
+            display: block;
+        }
+    }
+}
+
+.cart-menu{
+    @include icon-wrapper;
+    margin: 0 1rem;
+    color:white;
+}
+
+.cart-count{
+    position: absolute;
+    top: -.6rem;
+    right: -.4rem;
+    background-color:red;
+    color:white;
+    padding:.2rem .4rem;
+    border-radius: 1rem;
 }

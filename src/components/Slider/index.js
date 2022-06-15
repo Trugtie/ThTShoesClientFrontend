@@ -7,14 +7,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Item from "../Item";
 import "./style.scss";
 
-export default function Slider() {
+export default function Slider({ bg }) {
   return (
     <>
       <Swiper
         navigation={true}
         pagination={true}
         modules={[Navigation, Pagination]}
-        className="mySwiper"
+        className={bg}
       >
         <SwiperSlide>
           <Grid

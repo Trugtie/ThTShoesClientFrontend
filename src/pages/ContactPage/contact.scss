@@ -1,0 +1,41 @@
+.contact-container {
+  background-color: black;
+  color: white;
+  margin-top: 2rem;
+  padding: 4rem 7rem;
+}
+
+.contact-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contact-content {
+  flex-basis: 50%;
+  .contact-logo {
+    text-align: left;
+    margin-top:2rem;
+  }
+  .info-wraper{
+    .info-item{
+        font-size: 1.2rem;
+        margin-bottom:2rem;
+    }
+  }
+}
+
+.contact-form {
+  flex-basis: 50%;
+}
+
+.contact-title {
+  font-weight: 700;
+  font-size: 32px;
+  color: #ff0101;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.map-container{
+    margin-bottom: 2rem;
+}

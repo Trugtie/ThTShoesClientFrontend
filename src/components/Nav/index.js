@@ -8,13 +8,11 @@ import Tab from "@mui/material/Tab";
 import { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
 
 function LinkTab(props) {
-  return (
-    <Tab
-      {...props}
-    />
-  );
+  return <Tab {...props} />;
 }
 
 export default function Nav() {
@@ -37,8 +35,34 @@ export default function Nav() {
             </div>
             <div className="nav-icon">
               <SearchIcon />
-              <ShoppingCartIcon />
-              <PersonIcon />
+              <Link className="cart-menu" to="cart">
+                <ShoppingCartIcon />
+                <div className="cart-count">1</div>
+              </Link>
+              <div className="person-menu">
+                <PersonIcon className="person-icon" />
+                <div className="person-menu-dropdown">
+                  <ListItemButton
+                    className="person-btn"
+                    component={Link}
+                    to="/login"
+                    sx={{
+                      "&.MuiListItemButton-root": {
+                        borderBottom: "1px solid #959595",
+                      },
+                    }}
+                  >
+                    <ListItemText primary="ĐĂNG NHẬP" />
+                  </ListItemButton>
+                  <ListItemButton
+                    className="person-btn"
+                    component={Link}
+                    to="/register"
+                  >
+                    <ListItemText primary="ĐĂNG KÝ" />
+                  </ListItemButton>
+                </div>
+              </div>
             </div>
           </div>
           <div className="nav-list">

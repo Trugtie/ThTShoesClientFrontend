@@ -59,9 +59,6 @@ export default function Footer() {
                 marginHeight="0"
                 marginWidth="0"
               ></iframe>
-              <a href="https://putlocker-is.org"></a>
-              <br />
-              <a href="https://www.embedgooglemap.net">embedgooglemap.net</a>
             </div>
           </div>
         </div>

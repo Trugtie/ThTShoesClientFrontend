@@ -3,10 +3,17 @@
   height: 100%;
 }
 
+.myswiper--main{
+  background:var(--main-bg-color);
+
+}
+.myswiper--second{
+  background:var(--second-bg-color);
+}
+
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
   padding: 2.8rem 5.8rem;
   /* Center slide text vertically */
   display: -webkit-box;

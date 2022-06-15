@@ -1,6 +1,7 @@
 .item-container {
   width: 331px;
   height: 346px;
+  background-color: white;
 }
 
 .item-image {
@@ -12,7 +13,7 @@
   font-size: 20px;
   line-height: 23px;
   align-items: center;
-  padding: 4px 0px;
+  padding: 1rem 0px;
 }
 
 .item-price {
@@ -20,7 +21,7 @@
   font-size: 16px;
   line-height: 19px;
   align-items: center;
-  padding-bottom: 7px;
+  padding-bottom: 1rem;
   color: #c00000;
 }
 

@@ -1,5 +1,6 @@
 import './item.scss'
 import Button from '@mui/material/Button';
+import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 
 export default function Item(){
     return (
@@ -25,12 +26,13 @@ export default function Item(){
             >Xem chi tiết</Button>
             <Button variant="contained"
              sx={{
+                width:'120px',
                 backgroundColor:'var(--button-second-color)',
                 "&:hover":{
                     backgroundColor:'var(--button-first-color)'
                 }
             }}
-            >Contained</Button>
+            ><AddShoppingCartOutlinedIcon/></Button>
             </div>
         </div>
     )

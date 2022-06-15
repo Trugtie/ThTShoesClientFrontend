@@ -5,7 +5,10 @@ import Grid from "@mui/material/Grid";
 import MaleImage from "../../assets/male.png";
 import FemaleImage from "../../assets/female.png";
 import ChildImage from "../../assets/child.png";
-import ShowcaseTab from "../../components/ShowcaseTab";
+import ShowcaseShoesTab from "../../components/ShowcaseShoesTab";
+import ShowcaseAccessoriesTab from "../../components/ShowcaseAccessoriesTab"
+import Divider from "../../components/Divider";
+import SaleSlider from '../../components/SaleSlider'
 
 export default function HomePage() {
   return (
@@ -46,7 +49,7 @@ export default function HomePage() {
       <section className="categories-section">
         <div className="container">
           <h1 className="categories-header-title">DANH MỤC</h1>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} sx={{marginBottom:'160px'}}>
             <Grid item xs={4}>
               <CategoryItem title="GIÀY NAM" link="#" bg={MaleImage} />
             </Grid>
@@ -60,15 +63,22 @@ export default function HomePage() {
         </div>
       </section>
       {/* Shoes Showcase */}
-      <section className="shoes-section">
+      <section className="shoes-section section--gray">
         <div className="container">
-          <ShowcaseTab />
+          <ShowcaseShoesTab />
         </div>
       </section>
       {/* Divider Section */}
-      <section className="divider-section">
+      <Divider />
+      <section className="shoes-section section--main">
         <div className="container">
-          
+        <ShowcaseAccessoriesTab/>
+        </div>
+      </section>
+      {/* Sale */}
+      <section className="sale-section section--gray">
+        <div className="container sale-flex">
+          <SaleSlider />
         </div>
       </section>
     </div>

@@ -1,0 +1,23 @@
+.sale-large-container{
+color:var(--second-font-color);
+width:100%;
+height:100%;
+display:flex;
+justify-content: center;
+align-items: center;
+box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.3);
+}
+
+.sale-logo{
+    border: 1px solid white;
+}
+
+.sale-description{
+    font-weight: 700;
+    font-size: 2.6rem;
+    margin:1rem 0rem;
+}
+
+.sale-cost{
+    color:#FAFF00;
+}
