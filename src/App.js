@@ -4,13 +4,14 @@ import Footer from "./components/Footer";
 import Nav from "./components/Nav";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
-import MalePage from "./pages/MalePage";
+import ProductPage from "./pages/ProductPage";
 import RegisterPage from "./pages/RegisterPage";
 import ForgotPage from "./pages/ForgotPage";
 import ForgotPage2 from "./pages/ForgotPage2";
 import AlertPage from "./pages/AlertPage";
 import ContactPage from "./pages/ContactPage";
 import AboutPage from "./pages/AboutPage";
+import DetailItemPage from "./pages/DetailItemPage";
 
 function App() {
   return (
@@ -19,9 +20,13 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/homepage" element={<HomePage />} />
-        <Route path="/male" element={<MalePage />} />
+        <Route path="/male" element={<ProductPage categorySelect='male' />} />
+        <Route path="/female" element={<ProductPage categorySelect='female' />} />
+        <Route path="/child" element={<ProductPage categorySelect='child' />} />
+        <Route path="/accessory" element={<ProductPage categorySelect='accessory' />} />
         <Route path="/contact" element={<ContactPage/>} />
         <Route path="/about" element={<AboutPage/>} />
+        <Route path="/detail" element={<DetailItemPage/>} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login/register" element={<RegisterPage />} />
