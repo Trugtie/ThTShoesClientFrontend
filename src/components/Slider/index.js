@@ -5,6 +5,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Item from "../Item";
+import EventItem from "../EventItem";
 import "./style.scss";
 
 export default function Slider({ bg }) {
@@ -53,8 +54,17 @@ export default function Slider({ bg }) {
             }}
           >
             <Grid item xs={4}>
-              <Item />
+              <EventItem />
             </Grid>
+            <Grid item xs={4}>
+              <EventItem />
+            </Grid>
+            <Grid item xs={4}>
+              <EventItem />
+            </Grid>
+            <Grid item xs={4}>
+              <EventItem />
+            </Grid> 
           </Grid>
         </SwiperSlide>
       </Swiper>

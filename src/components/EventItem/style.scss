@@ -1,0 +1,36 @@
+.item-container--event {
+  background-color: #fdffa3;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.item-title--event {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  color: #ff0101;
+  padding: 0.5rem 0px;
+}
+
+.item-price--event {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+  text-align: justify;
+  padding: 0rem 0.5rem;
+}
+.item-image {
+  position: relative;
+}
+.event-range {
+  position: absolute;
+  color: white;
+  background-color: black;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: -8%;
+}

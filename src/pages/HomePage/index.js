@@ -69,7 +69,7 @@ export default function HomePage() {
         </div>
       </section>
       {/* Divider Section */}
-      <Divider />
+      <Divider yellowWords="ThT" whiteWords="Shoes" height='406px'/>
       <section className="shoes-section section--main">
         <div className="container">
         <ShowcaseAccessoriesTab/>

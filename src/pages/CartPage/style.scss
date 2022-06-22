@@ -1,0 +1,73 @@
+.cart-container {
+  .divider-tittle {
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 48px;
+  }
+}
+
+.cart-section {
+  .container {
+    padding: 148px 0px;
+  }
+}
+
+.cart-table {
+  .MuiOutlinedInput-input {
+    text-align: center;
+  }
+  .MuiOutlinedInput-notchedOutline {
+    display: none;
+  }
+  .MuiTableCell-head {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+  }
+  .MuiTableCell-body {
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 23px;
+    padding: 0;
+  }
+
+  thead {
+    tr {
+      border-bottom: 2px solid #c5c5c5;
+    }
+  }
+  .cart-img {
+    max-width: 130px;
+    margin-right: 19px;
+  }
+}
+
+.cart-sum {
+  text-align: right;
+  font-weight: 400;
+  font-size: 20px;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  padding-right: 5rem;
+}
+
+.sum-title {
+  font-weight: 700;
+  font-size: 24px;
+  margin-right: 5rem;
+}
+
+.cart-button-group {
+  text-align: right;
+}
+.table-cell-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -12,6 +12,8 @@ import AlertPage from "./pages/AlertPage";
 import ContactPage from "./pages/ContactPage";
 import AboutPage from "./pages/AboutPage";
 import DetailItemPage from "./pages/DetailItemPage";
+import EventPage from "./pages/EventPage";
+import CartPage from "./pages/CartPage";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
         <Route path="/female" element={<ProductPage categorySelect='female' />} />
         <Route path="/child" element={<ProductPage categorySelect='child' />} />
         <Route path="/accessory" element={<ProductPage categorySelect='accessory' />} />
+        <Route path="/event" element={<EventPage/>}/>
+        <Route path="/cart" element={<CartPage/>}/>
         <Route path="/contact" element={<ContactPage/>} />
         <Route path="/about" element={<AboutPage/>} />
         <Route path="/detail" element={<DetailItemPage/>} />
