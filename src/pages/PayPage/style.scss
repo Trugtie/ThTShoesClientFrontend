@@ -1,0 +1,54 @@
+.pay-section {
+  padding: 73px 0px;
+}
+
+.container--pay {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pay-info {
+  flex-basis: 60%;
+  margin-right: 2rem;
+}
+
+.pay-order {
+  flex-basis: 40%;
+  border: solid 2px red;
+}
+
+.pay-title {
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 26px;
+  margin-top:7px;
+}
+
+.pay-title--left {
+  text-align: left;
+  text-indent: 1rem;
+}
+
+.pay-table {
+  th,
+  td {
+    padding: 15px 16px;
+  }
+  .Mui-checked {
+    color: rgba(0, 0, 0, 0.54) !important;
+  }
+}
+
+.sale-btn-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sale-field {
+  flex-basis: 60%;
+}
+
+.sale-btn {
+  flex-basis: 25%;
+}
