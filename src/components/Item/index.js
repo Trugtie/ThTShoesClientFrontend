@@ -3,10 +3,10 @@ import Button from "@mui/material/Button";
 import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
 import { useNavigate } from "react-router-dom";
 
-export default function Item() {
+export default function Item({ id,name, price=0, img }) {
   let navigate = useNavigate();
   const handleDetail = () => {
-    navigate("/detail");
+    navigate(`/detail/${id}`);
   };
 
   return (
@@ -14,15 +14,21 @@ export default function Item() {
       <div
         className="item-image"
         style={{
-          backgroundImage: "url(http://placehold.jp/331x210.png)",
+          backgroundImage: `url(${img})`,
         }}
       ></div>
       <div className="item-description">
-        <div className="item-title">Chuck Taylor Classic</div>
-        <div className="item-price">1,250,000 đ</div>
+        <div className="item-title">{name}</div>
+        <div className="item-price">
+          {price.toLocaleString("vi-VN", {
+            style: "currency",
+            currency: "VND",
+          })}
+        </div>
       </div>
       <div className="item-button-group">
-        <Button onClick={handleDetail}
+        <Button
+          onClick={handleDetail}
           variant="contained"
           sx={{
             width: "192px",

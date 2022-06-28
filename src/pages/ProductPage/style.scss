@@ -8,21 +8,6 @@
   color: white;
   font-size: 3rem;
 }
-.filter-section {
-  flex-basis: 15%;
-  height: 100vh;
-  overflow-y: auto;
-}
-
-.list-section {
-  flex-basis: 85%;
-
-  height: 100vh;
-  overflow-y: auto;
-}
-.list-section::-webkit-scrollbar {
-  display: none;
-}
 
 .search-container {
   width: 100%;
@@ -47,31 +32,6 @@
   outline-width: 0px;
 }
 
-.filter-section {
-  border-right: 1px solid rgba(0, 0, 0, 0.322);
-  color: black;
-  padding: 0 1rem;
-}
-
-.filter-title {
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 28px;
-  margin-top: 1rem;
-}
-
-.filter-section {
-  font-family: var(--main-font);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.filter-categories {
-  padding: 1rem 0;
-}
-
 .css-d9c359-MuiButtonBase-root-MuiToggleButton-root.Mui-selected {
   color: white !important;
   background-color: black !important;
@@ -81,40 +41,7 @@
   background-color: rgba(0, 0, 0, 0.692) !important;
 }
 
-.filter-type {
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 23px;
-  width: 100%;
-  padding: 0 1rem;
-}
-
-.filter-price {
-  width: 100%;
-  padding: 0 .8rem;
-}
-
 .price-show {
   font-size: 20px;
   margin-top: 1rem;
-}
-
-.list-section{
-  color:black;
-  .css-xeip47-MuiGrid-root>.MuiGrid-item{
-    display:flex;
-    justify-content:center;
-  }
-}
-
-.list-container{
-  .item-container{
-    width: 100%;
-    max-width: 331px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    .item-image{
-      background-position: center;
-
-    }
-  }
 }

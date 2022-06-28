@@ -39,9 +39,9 @@ export default function Nav() {
                 <ShoppingCartIcon />
                 <div className="cart-count">1</div>
               </Link>
-              <div className="person-menu">
+              {/* <div className="person-menu">
                 <PersonIcon className="person-icon" />
-                <div className="person-menu-dropdown">
+                <div className="person-menu-dropdown person-menu-dropdown--icon">
                   <ListItemButton
                     className="person-btn"
                     component={Link}
@@ -60,6 +60,50 @@ export default function Nav() {
                     to="/register"
                   >
                     <ListItemText primary="ĐĂNG KÝ" />
+                  </ListItemButton>
+                </div>
+              </div> */}
+              <div className="person-menu person-menu--user">
+                Welcome
+                <br />
+                Trugtie
+                <div className="person-menu-dropdown">
+                  <ListItemButton
+                    className="person-btn"
+                    component={Link}
+                    to="/personInfo"
+                    sx={{
+                      "&.MuiListItemButton-root": {
+                        borderBottom: "1px solid #959595",
+                      },
+                    }}
+                  >
+                    <ListItemText
+                      className="dropdown-text"
+                      primary="THÔNG TIN CÁ NHÂN"
+                    />
+                  </ListItemButton>
+                  <ListItemButton
+                    className="person-btn"
+                    component={Link}
+                    to="/history"
+                    sx={{
+                      "&.MuiListItemButton-root": {
+                        borderBottom: "1px solid #959595",
+                      },
+                    }}
+                  >
+                    <ListItemText
+                      className="dropdown-text"
+                      primary="LỊCH SỬ MUA HÀNG"
+                    />
+                  </ListItemButton>
+                  <ListItemButton
+                    className="person-btn"
+                    component={Link}
+                    to="/exit"
+                  >
+                    <ListItemText className="dropdown-text" primary="THOÁT" />
                   </ListItemButton>
                 </div>
               </div>

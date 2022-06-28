@@ -12,9 +12,15 @@ import GreenCheckIcon from "../../assets/checked.svg";
 import CombIcon from "../../assets/comb.svg";
 import ThumbGallery from "../../components/ThumbGallery";
 import "./detail.scss";
+import { useSelector } from "react-redux";
+import { shoesDetailSelector } from "../../store/selectors";
+import { useParams } from "react-router-dom";
 
 export default function DetailItemPage() {
+  let { id } = useParams();
   let navigate = useNavigate();
+  const shoes = useSelector(shoesDetailSelector(id));
+  console.log(shoes);
   const handleGoback = () => {
     navigate("/homepage");
   };
@@ -50,18 +56,19 @@ export default function DetailItemPage() {
       <section className="detail-section">
         <div className="container detailItem-container">
           <div className="detail-img">
-            <ThumbGallery />
+            <ThumbGallery imgList={shoes.hinhs} />
           </div>
           <div className="detail-info">
             <div className="detail-info__title">
-              <h1 className="title__name">PRODUCT NAME</h1>
-              <h2 className="title__price">1,800,000 ₫</h2>
+              <h1 className="title__name">{shoes.tengiay}</h1>
+              <h2 className="title__price">
+                {shoes.gia.toLocaleString("vi-VN", {
+                  style: "currency",
+                  currency: "VND",
+                })}
+              </h2>
             </div>
-            <div className="detail-info__description">
-              Product description bla bla bla bla bla bla bla bla bla bla bla
-              bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-              bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla
-            </div>
+            <div className="detail-info__description">{shoes.mota}</div>
             <div className="detail-info__choose">
               <div className="choose__color">
                 <FormControl fullWidth>
@@ -72,10 +79,17 @@ export default function DetailItemPage() {
                     value={color}
                     label="Màu sắc"
                     onChange={handleChange}
+                    MenuProps={{
+                      disableScrollLock: true,
+                    }}
                   >
-                    <MenuItem value={10}>Xanh</MenuItem>
-                    <MenuItem value={20}>Đỏ</MenuItem>
-                    <MenuItem value={30}>Đen</MenuItem>
+                    {shoes.mausacs.map((mau) => {
+                      return (
+                        <MenuItem key={mau.mamau} value={mau.mamau}>
+                          {mau.tenmau}
+                        </MenuItem>
+                      );
+                    })}
                   </Select>
                 </FormControl>
               </div>
@@ -88,30 +102,43 @@ export default function DetailItemPage() {
                     value={size}
                     label="Size"
                     onChange={handleChangeSize}
+                    MenuProps={{
+                      disableScrollLock: true,
+                    }}
                   >
-                    <MenuItem value={10}>35</MenuItem>
-                    <MenuItem value={20}>36</MenuItem>
-                    <MenuItem value={30}>37</MenuItem>
+                    {shoes.sizes.map((size) => {
+                      return (
+                        <MenuItem key={size.masize} value={size.masize}>
+                          {size.tensize}
+                        </MenuItem>
+                      );
+                    })}
                   </Select>
                 </FormControl>
               </div>
               <div className="choose__label">
-                <div className="label__type">GIÀY ĐÁ BÓNG</div>
+                <div className="label__category">
+                  {" "}
+                  GIÀY {shoes.loaigiay.danhMuc.tendanhmuc.toUpperCase()}
+                </div>
+                <div className="label__type">
+                  {"LOẠI " + shoes.loaigiay.tenloai.toUpperCase()}
+                </div>
                 <div className="label__name">ADIDAS</div>
               </div>
             </div>
             <div className="detail-info__more">
               <div className="more-item">
                 <img src={GreenCheckIcon} className="item__check" />
-                <h4 className="item__text">Trọng lượng: 23g</h4>
+                <h4 className="item__text">Trọng lượng: {shoes.trongluong}g</h4>
               </div>
               <div className="more-item">
                 <img src={GreenCheckIcon} className="item__check" />
-                <h4 className="item__text">Kiểu dáng: Classic</h4>
+                <h4 className="item__text">Kiểu dáng: {shoes.kieudang}</h4>
               </div>
               <div className="more-item">
                 <img src={GreenCheckIcon} className="item__check" />
-                <h4 className="item__text">Chất liệu: Cotton</h4>
+                <h4 className="item__text">Chất liệu: {shoes.chatlieu}</h4>
               </div>
             </div>
             <div className="detail-info__guide">
@@ -155,7 +182,7 @@ export default function DetailItemPage() {
                   "&:hover": {
                     backgroundColor: "var(--button-first-color)",
                   },
-                  flexBasis:'200px'
+                  flexBasis: "200px",
                 }}
               >
                 TRỞ LẠI
@@ -167,7 +194,7 @@ export default function DetailItemPage() {
                   "&:hover": {
                     backgroundColor: "var(--button-first-color)",
                   },
-                  flexBasis:'400px'
+                  flexBasis: "400px",
                 }}
               >
                 THÊM VÀO GIỎ HÀNG

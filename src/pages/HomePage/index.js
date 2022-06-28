@@ -51,13 +51,13 @@ export default function HomePage() {
           <h1 className="categories-header-title">DANH MỤC</h1>
           <Grid container spacing={2} sx={{marginBottom:'160px'}}>
             <Grid item xs={4}>
-              <CategoryItem title="GIÀY NAM" link="#" bg={MaleImage} />
+              <CategoryItem title="GIÀY NAM" link="male" bg={MaleImage} />
             </Grid>
             <Grid item xs={4}>
-              <CategoryItem title="GIÀY NỮ" link="#" bg={FemaleImage} />
+              <CategoryItem title="GIÀY NỮ" link="female" bg={FemaleImage} />
             </Grid>
             <Grid item xs={4}>
-              <CategoryItem title="GIÀY TRẺ EM" link="#" bg={ChildImage} />
+              <CategoryItem title="GIÀY TRẺ EM" link="child" bg={ChildImage} />
             </Grid>
           </Grid>
         </div>

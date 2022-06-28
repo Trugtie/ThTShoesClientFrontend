@@ -1,0 +1,28 @@
+.list-section {
+  flex-basis: 85%;
+
+  height: 100vh;
+  overflow-y: auto;
+}
+.list-section::-webkit-scrollbar {
+  display: none;
+}
+
+.list-section {
+  color: black;
+  .css-xeip47-MuiGrid-root > .MuiGrid-item {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.list-container {
+  .item-container {
+    width: 100%;
+    max-width: 331px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    .item-image {
+      background-position: center;
+    }
+  }
+}

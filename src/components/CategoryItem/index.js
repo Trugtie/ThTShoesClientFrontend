@@ -1,6 +1,7 @@
 import "./category.scss";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
+import {Link as RouterLink}  from "react-router-dom";
 
 export default function CategoryItem({ title, link, bg }) {
   return (
@@ -21,7 +22,7 @@ export default function CategoryItem({ title, link, bg }) {
               },
           }}
         >
-          <Link href={link} underline="none" sx={{ color: "white" }}>
+          <Link component={RouterLink} to={link} underline="none" sx={{ color: "white" }}>
             Xem ngay
           </Link>
         </Button>
