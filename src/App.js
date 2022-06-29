@@ -78,10 +78,9 @@ function App() {
           element={<Navigate to="/forgotpass2" replace />}
         />
         <Route
-          path="/alert"
-          element={<AlertPage title="KHÔI PHỤC MẬT KHẨU THÀNH CÔNG" />}
+          path="/alert/:mode"
+          element={<AlertPage />}
         />
-        <Route path="/login/alert" element={<Navigate to="/alert" replace />} />
       </Routes>
       <ScrollTop/>
       <Footer />

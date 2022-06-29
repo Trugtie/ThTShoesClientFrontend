@@ -1,19 +1,18 @@
+import { yupResolver } from "@hookform/resolvers/yup";
+import Alert from "@mui/material/Alert";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-import "./login.scss";
-import { Link } from "react-router-dom";
-import Button from "@mui/material/Button";
-import GoogleBtn from "../../assets/googleBtn.svg";
-import FacebookBtn from "../../assets/faceboodBtn.svg";
-import { useForm, Controller } from "react-hook-form";
-import { login, getMyInfo } from "../../components/Nav/userSlice";
+import { Controller, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { userStatusSelector } from "../../store/selectors";
-import Alert from "@mui/material/Alert";
-import { useNavigate } from "react-router-dom";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
+import FacebookBtn from "../../assets/faceboodBtn.svg";
+import GoogleBtn from "../../assets/googleBtn.svg";
+import { getMyInfo, login } from "../../components/Nav/userSlice";
+import { userStatusSelector } from "../../store/selectors";
+import "./login.scss";
 
 export default function LoginPage() {
   const dispatch = useDispatch();
@@ -77,7 +76,6 @@ export default function LoginPage() {
                   <Controller
                     name="username"
                     control={control}
-                    rules={{ required: true, maxLength: 20 }}
                     render={({ field }) => (
                       <TextField
                         {...field}
@@ -110,7 +108,6 @@ export default function LoginPage() {
                   <Controller
                     name="password"
                     control={control}
-                    rules={{ required: true, maxLength: 20 }}
                     render={({ field }) => (
                       <TextField
                         {...field}

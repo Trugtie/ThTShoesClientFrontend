@@ -2,11 +2,15 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 
-export default function AlertPage({title}) {
+export default function AlertPage() {
   let navigate = useNavigate();
-
+  const mode = useParams().mode;
+  let title = "";
+  if(mode === 'register'){
+    title='Đăng ký thành công hãy vào email vừa đăng ký để kích hoạt tài khoản'
+  }
   const handleSend = () => {
     navigate("/");
   };
