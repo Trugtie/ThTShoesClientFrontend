@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
 import { useNavigate } from "react-router-dom";
 
-export default function Item({ id,name, price=0, img }) {
+export default function Item({ id, name, price = 0, img }) {
   let navigate = useNavigate();
   const handleDetail = () => {
     navigate(`/detail/${id}`);

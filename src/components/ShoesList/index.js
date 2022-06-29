@@ -17,8 +17,13 @@ export default function ShoesList() {
       >
         {shoesList.map((shoes) => {
           return (
-            <Grid item lg={3} md={4} sm={6} xs={12}>
-              <Item key={shoes.magiay} id={shoes.magiay} name={shoes.tengiay} price={shoes.gia} img={shoes.urlanh} />
+            <Grid key={shoes.magiay} item lg={3} md={4} sm={6} xs={12}>
+              <Item
+                id={shoes.magiay}
+                name={shoes.tengiay}
+                price={shoes.gia}
+                img={shoes.urlanh}
+              />
             </Grid>
           );
         })}

@@ -23,7 +23,6 @@ export default function CategoryItem({ title, link, bg }) {
           }}
         >
           <Link component={RouterLink} to={link} underline="none" sx={{ color: "white" }}>
-            Xem ngay
           </Link>
         </Button>
       </div>

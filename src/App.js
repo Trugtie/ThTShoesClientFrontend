@@ -1,7 +1,11 @@
-import { Route, Routes, Navigate } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/Footer";
 import Nav from "./components/Nav";
+import ScrollTop from "./components/ScrollTop";
+import { fetchShoes } from "./components/ShoesList/shoeslistSlice";
 import AboutPage from "./pages/AboutPage";
 import AlertPage from "./pages/AlertPage";
 import CartPage from "./pages/CartPage";
@@ -15,9 +19,6 @@ import LoginPage from "./pages/LoginPage";
 import PayPage from "./pages/PayPage";
 import ProductPage from "./pages/ProductPage";
 import RegisterPage from "./pages/RegisterPage";
-import { useDispatch } from "react-redux";
-import { fetchShoes } from "./components/ShoesList/shoeslistSlice";
-import { useEffect } from "react";
 
 function App() {
   const dispatch = useDispatch();
@@ -82,6 +83,7 @@ function App() {
         />
         <Route path="/login/alert" element={<Navigate to="/alert" replace />} />
       </Routes>
+      <ScrollTop/>
       <Footer />
     </div>
   );

@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { API_URL } from "../../store/constants";
-import axios from "axios";
+import shoesApi from "../../api/shoesApi";
 
 export default createSlice({
   name: "shoesList",
@@ -23,7 +22,4 @@ export default createSlice({
   },
 });
 
-export const fetchShoes = createAsyncThunk("shoes/fetchShoes", async () => {
-  const {data} = await axios.get(`${API_URL}/khachhang/giay`);
-  return data;
-});
+export const fetchShoes = createAsyncThunk("shoes/fetchShoes", async () => shoesApi.getAll());

@@ -5,9 +5,13 @@ export const categorySelector = (state) => state.filters.category;
 export const typeSelector = (state) => state.filters.type;
 export const priceSelector = (state) => state.filters.price;
 export const shoesListSelector = (state) => state.shoesList.shoesList.giays;
+export const userStatusSelector = (state) => state.user.status;
+export const userSelector = (state) => state.user.current;
+
 export const shoesDetailSelector = (id) => {
-  return (state) => state.shoesList.shoesList.giays.find(shoes=>shoes.magiay===id)
-}
+  return (state) =>
+    state.shoesList.shoesList.giays.find((shoes) => shoes.magiay === id);
+};
 
 export const shoesListRemainingSelector = createSelector(
   shoesListSelector,
