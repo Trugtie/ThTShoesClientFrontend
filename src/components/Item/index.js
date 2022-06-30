@@ -2,8 +2,22 @@ import "./item.scss";
 import Button from "@mui/material/Button";
 import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
 import { useNavigate } from "react-router-dom";
+import cartSlice from "../../pages/CartPage/cartSlice";
+import { useDispatch } from "react-redux";
 
 export default function Item({ id, name, price = 0, img }) {
+  const dispatch = useDispatch();
+  const handleAddCart = (e) => {
+    const item = {
+      id: id,
+      name: name,
+      price: price,
+      img: img,
+      count: 1,
+      priceSum: price,
+    };
+    dispatch(cartSlice.actions.addCart(item));
+  };
   let navigate = useNavigate();
   const handleDetail = () => {
     navigate(`/detail/${id}`);
@@ -41,6 +55,7 @@ export default function Item({ id, name, price = 0, img }) {
           Xem chi tiết
         </Button>
         <Button
+          onClick={handleAddCart}
           variant="contained"
           sx={{
             width: "120px",

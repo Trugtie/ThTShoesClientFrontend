@@ -7,6 +7,9 @@ export const priceSelector = (state) => state.filters.price;
 export const shoesListSelector = (state) => state.shoesList.shoesList.giays;
 export const userStatusSelector = (state) => state.user.status;
 export const userSelector = (state) => state.user.current;
+export const cartSelector = (state) => state.cart.list;
+export const totalCartSelector = (state) => state.cart.totalCart;
+
 
 export const shoesDetailSelector = (id) => {
   return (state) =>

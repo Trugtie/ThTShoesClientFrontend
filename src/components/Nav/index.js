@@ -10,7 +10,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.svg";
-import { userSelector } from "../../store/selectors";
+import { userSelector, cartSelector } from "../../store/selectors";
 import userSlice from "../Nav/userSlice";
 import "./nav.scss";
 
@@ -22,6 +22,8 @@ export default function Nav() {
   const dispatch = useDispatch();
   let user = useSelector(userSelector);
 
+  const cart = useSelector(cartSelector);
+  const cartLenght = cart.length != 0 ? cart.length : null;
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -47,7 +49,7 @@ export default function Nav() {
               <SearchIcon />
               <Link className="cart-menu" to="cart">
                 <ShoppingCartIcon />
-                <div className="cart-count">1</div>
+                {cartLenght && <div className="cart-count">{cartLenght}</div>}
               </Link>
               {Object.keys(user).length === 0 ? (
                 <div className="person-menu">

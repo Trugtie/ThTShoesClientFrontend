@@ -1,4 +1,4 @@
-import { Grid, TextField, TextareaAutosize } from "@mui/material";
+import { TextField } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -9,21 +9,15 @@ import Radio from "@mui/material/Radio";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import { useState } from "react";
 import Button from "@mui/material/Button";
+import { useSelector } from "react-redux";
+import { totalCartSelector, cartSelector } from "../../store/selectors";
+import PayForm from "../../components/Form/PayForm";
 import "./style.scss";
 
-function createData(name, count, price) {
-  return { name, count, price };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 1800000),
-  createData("Ice cream sandwich", 237, 1800000),
-  createData("Eclair", 262, 1800000),
-  createData("Cupcake", 305, 1800000),
-  createData("Gingerbread", 356, 1800000),
-];
-
 export default function PayPage() {
+  const totalCart = useSelector(totalCartSelector);
+  const cartList = useSelector(cartSelector);
+
   const [method, setMethod] = useState("cash");
 
   const handleMethod = (event) => {
@@ -34,74 +28,7 @@ export default function PayPage() {
     <div className="pay-container">
       <section className="pay-section">
         <div className="container container--pay">
-          <div className="pay-info">
-            <h1 className="pay-title pay-title--left">THÔNG TIN THANH TOÁN</h1>
-            <hr />
-            <Grid sx={{ padding: "1rem 2rem" }} container spacing={2}>
-              <Grid item xs={6}>
-                <TextField
-                  id="filled-basic"
-                  label="Họ"
-                  fullWidth
-                  variant="filled"
-                  placeholder="Nhập họ..."
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  id="filled-basic"
-                  label="Tên"
-                  fullWidth
-                  variant="filled"
-                  placeholder="Nhập tên..."
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  id="filled-basic"
-                  label="Địa chỉ giao"
-                  fullWidth
-                  variant="filled"
-                  placeholder="Nhập địa chỉ giao hàng..."
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  id="filled-basic"
-                  label="Số điện thoại"
-                  type="number"
-                  fullWidth
-                  variant="filled"
-                  placeholder="Nhập số điện thoại..."
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <TextField
-                  id="filled-basic"
-                  label="Email"
-                  fullWidth
-                  variant="filled"
-                  placeholder="Nhập email..."
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextareaAutosize
-                  maxRows={7}
-                  minRows={7}
-                  aria-label="Lời nhắn"
-                  placeholder="Nhập ghi chú (tùy chọn)..."
-                  style={{
-                    width: "100%",
-                    padding: "1rem",
-                    fontSize: "1.3rem",
-                    background: "rgba(0, 0, 0, 0.06)",
-                    border: "none",
-                    borderBottom: "1px solid black",
-                  }}
-                />
-              </Grid>
-            </Grid>
-          </div>
+          <PayForm />
           <div className="pay-order">
             <h1 className="pay-title">THÔNG TIN ĐƠN HÀNG</h1>
             <hr />
@@ -125,7 +52,7 @@ export default function PayPage() {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {rows.map((row) => (
+                  {cartList.map((row) => (
                     <TableRow
                       key={row.name}
                       sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
@@ -134,7 +61,7 @@ export default function PayPage() {
                         {row.name} x {row.count}
                       </TableCell>
                       <TableCell align="center">
-                        {row.price.toLocaleString("vi-VN", {
+                        {row.priceSum.toLocaleString("vi-VN", {
                           style: "currency",
                           currency: "VND",
                         })}
@@ -144,7 +71,10 @@ export default function PayPage() {
                   <TableRow sx={{ borderBottom: "2px solid #A6A6A6" }}>
                     <TableCell sx={{ fontWeight: "bold" }}>TỔNG TIỀN</TableCell>
                     <TableCell sx={{ fontWeight: "bold" }} align="center">
-                      1.800.000 ₫
+                      {totalCart.toLocaleString("vi-VN", {
+                        style: "currency",
+                        currency: "VND",
+                      })}
                     </TableCell>
                   </TableRow>
                   <TableRow sx={{ borderBottom: "2px solid #A6A6A6" }}>
@@ -199,7 +129,11 @@ export default function PayPage() {
                     >
                       <Button
                         variant="contained"
-                        sx={{ background: "#FF7878", width: "188px","&:hover":{background:'red'} }}
+                        sx={{
+                          background: "#FF7878",
+                          width: "188px",
+                          "&:hover": { background: "red" },
+                        }}
                         className="sale-btn"
                       >
                         ĐẶT HÀNG

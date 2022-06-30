@@ -15,12 +15,28 @@ import "./detail.scss";
 import { useSelector } from "react-redux";
 import { shoesDetailSelector } from "../../store/selectors";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import cartSlice from "../CartPage/cartSlice";
 
 export default function DetailItemPage() {
   let { id } = useParams();
   let navigate = useNavigate();
   const shoes = useSelector(shoesDetailSelector(id));
   console.log(shoes);
+
+  const dispatch = useDispatch();
+  const handleAddCart = (e) => {
+    const item = {
+      id: shoes.magiay,
+      name: shoes.tengiay,
+      price: shoes.gia,
+      img: shoes.urlanh,
+      count: 1,
+      priceSum: shoes.gia,
+    };
+    dispatch(cartSlice.actions.addCart(item));
+  };
+
   const handleGoback = () => {
     navigate("/homepage");
   };
@@ -187,7 +203,7 @@ export default function DetailItemPage() {
               >
                 TRỞ LẠI
               </Button>
-              <Button
+              <Button onClick={handleAddCart}
                 variant="contained"
                 sx={{
                   backgroundColor: "var(--button-second-color)",

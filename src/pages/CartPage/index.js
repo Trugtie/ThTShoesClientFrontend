@@ -12,22 +12,21 @@ import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
-
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 1800000, 6.0, 1800000, 4.0),
-  createData("Ice cream sandwich", 1800000, 5, 1800000, 4.3),
-  createData("Eclair", 1800000, 16.0, 1800000, 6.0),
-  createData("Cupcake", 1800000, 3.7, 1800000, 4.3),
-];
+import { useSelector } from "react-redux";
+import { cartSelector } from "../../store/selectors";
+import cartSlice from "./cartSlice";
+import { useDispatch } from "react-redux";
 
 export default function CartPage() {
   let navigate = useNavigate();
+  const dispatch = useDispatch();
+  const listItems = useSelector(cartSelector);
+  const totalPrice = listItems.reduce((total, item) => {
+    return total + item.priceSum;
+  }, 0);
 
   const handlePay = () => {
+    dispatch(cartSlice.actions.updateTotalCart(totalPrice));
     navigate("/pay");
   };
 
@@ -51,14 +50,14 @@ export default function CartPage() {
                   <TableCell>SẢN PHẨM</TableCell>
                   <TableCell align="center">GIÁ</TableCell>
                   <TableCell align="center">SỐ LƯỢNG</TableCell>
-                  <TableCell align="center">THÀNH TIỀN  </TableCell>
+                  <TableCell align="center">THÀNH TIỀN </TableCell>
                   <TableCell align="center"></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.map((row) => (
+                {listItems.map((item) => (
                   <TableRow
-                    key={row.name}
+                    key={item.id}
                     sx={{ "&:last-child td, &:last-child th": { border: "0" } }}
                   >
                     <TableCell
@@ -66,14 +65,11 @@ export default function CartPage() {
                       scope="row"
                       sx={{ display: "flex", alignItems: "center" }}
                     >
-                      <img
-                        src="https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/169c6c9c-4c9e-49d2-b5ac-2214f5568369/air-presto-hello-kitty-shoes-Nm5Dd5.png"
-                        className="cart-img"
-                      />
-                      {row.name}
+                      <img src={item.img} className="cart-img" />
+                      {item.name}
                     </TableCell>
                     <TableCell align="center">
-                      {row.calories.toLocaleString("vi-VN", {
+                      {item.price.toLocaleString("vi-VN", {
                         style: "currency",
                         currency: "VND",
                       })}
@@ -86,6 +82,9 @@ export default function CartPage() {
                             borderRadius: "0%",
                             "&:hover": { background: "black", color: "white" },
                           }}
+                          onClick={() =>
+                            dispatch(cartSlice.actions.inCreaseCart(item.id))
+                          }
                         >
                           +
                         </IconButton>
@@ -96,13 +95,16 @@ export default function CartPage() {
                           InputProps={{
                             readOnly: true,
                           }}
-                          defaultValue={row.fat}
+                          value={item.count}
                           sx={{
                             width: "70px",
                             boxShadow: "0px 0px 4px 1px rgba(0, 0, 0, 0.25)",
                           }}
                         />
                         <IconButton
+                          onClick={() =>
+                            dispatch(cartSlice.actions.deCreaseCart(item.id))
+                          }
                           sx={{
                             background: "#DCDCDC",
                             borderRadius: "0%",
@@ -114,13 +116,18 @@ export default function CartPage() {
                       </div>
                     </TableCell>
                     <TableCell align="center">
-                      {row.carbs.toLocaleString("vi-VN", {
+                      {item.priceSum.toLocaleString("vi-VN", {
                         style: "currency",
                         currency: "VND",
                       })}
                     </TableCell>
                     <TableCell align="center">
-                      <IconButton aria-label="delete">
+                      <IconButton
+                        aria-label="delete"
+                        onClick={() =>
+                          dispatch(cartSlice.actions.removeCart(item.id))
+                        }
+                      >
                         <DeleteIcon sx={{ color: "#3F51B5" }} />
                       </IconButton>
                     </TableCell>
@@ -130,7 +137,11 @@ export default function CartPage() {
             </Table>
           </TableContainer>
           <div className="cart-sum">
-            <span className="sum-title">TỔNG TIỀN:</span> 13,800,000 ₫
+            <span className="sum-title">TỔNG TIỀN:</span>
+            {totalPrice.toLocaleString("vi-VN", {
+              style: "currency",
+              currency: "VND",
+            })}
           </div>
           <div className="cart-button-group">
             <Button
