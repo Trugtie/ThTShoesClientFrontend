@@ -20,6 +20,11 @@ const userApi = {
     const url = "/khachhang/dangky";
     return axios.post(`${API_URL}${url}`, payload);
   },
+  update:async(payload) => {
+    const url = "/khachhang"
+    const { data } = await  authAxios.put(`${API_URL}${url}`,payload);
+    return data;
+  }
 };
 
 export default userApi;

@@ -20,10 +20,10 @@ export default createSlice({
   reducers: {
     logout: (state, action) => {
       state.status = STATUS_IDLE;
-      state.current={};
-      localStorage.removeItem('user');
-      localStorage.removeItem('access_token');
-      localStorage.removeItem('access_token_decode');
+      state.current = {};
+      localStorage.removeItem("user");
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("access_token_decode");
     },
   },
   extraReducers: (builder) => {
@@ -35,11 +35,20 @@ export default createSlice({
       .addCase(getMyInfo.fulfilled, (state, action) => {
         state.current = action.payload;
         localStorage.setItem("user", JSON.stringify(action.payload));
-        state.status = STATUS_FULFILLED;
+        state.status = STATUS_IDLE;
       })
       .addCase(getMyInfo.rejected, (state, action) => {
         state.current = {};
         state.status = STATUS_REJECTED;
+      })
+      .addCase(updateInfo.rejected, (state, action) => {
+        state.status = STATUS_REJECTED;
+      })
+      .addCase(updateInfo.fulfilled, (state, action) => {
+        console.log(action.payload);
+        state.current = action.payload;
+        localStorage.setItem("user", JSON.stringify(action.payload));
+        state.status = STATUS_FULFILLED;
       });
   },
 });
@@ -52,7 +61,10 @@ export const login = createAsyncThunk("user/login", async (params) => {
   localStorage.setItem("access_token_decode", JSON.stringify(tokenDecode));
 });
 
-export const getMyInfo = createAsyncThunk(
-  "user/getInfo",
-  async (params) => userApi.getMe(params)
+export const getMyInfo = createAsyncThunk("user/getInfo", async (params) =>
+  userApi.getMe(params)
+);
+
+export const updateInfo = createAsyncThunk("user/updateInfo", async (params) =>
+  userApi.update(params)
 );

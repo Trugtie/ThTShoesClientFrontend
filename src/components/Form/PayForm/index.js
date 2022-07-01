@@ -1,11 +1,35 @@
 import { Grid, TextField, TextareaAutosize } from "@mui/material";
 import { userSelector } from "../../../store/selectors";
 import { useSelector } from "react-redux";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { Controller, useForm } from "react-hook-form";
 
 export default function PayForm() {
   const user = useSelector(userSelector);
   console.log(user);
-  
+
+//   const schema = yup
+//     .object({
+//       name: yup
+//         .string()
+//         .required("Không được bỏ trống")
+//         .max(18, "Tối đa 18 ký tự"),
+//       password: yup
+//         .string()
+//         .required("Không được bỏ trống")
+//         .min(6, "Tối thiểu 6 ký tự")
+//         .max(18, "Tối đa 18 ký tự"),
+//     })
+//     .required();
+//   const {
+//     control,
+//     handleSubmit,
+//     formState: { errors },
+//   } = useForm({
+//     resolver: yupResolver(schema),
+//   });
+
   return (
     <div className="pay-info">
       <h1 className="pay-title pay-title--left">THÔNG TIN THANH TOÁN</h1>

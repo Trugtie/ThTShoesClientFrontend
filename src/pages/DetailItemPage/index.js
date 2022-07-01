@@ -7,19 +7,19 @@ import Modal from "@mui/material/Modal";
 import Select from "@mui/material/Select";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import GreenCheckIcon from "../../assets/checked.svg";
 import CombIcon from "../../assets/comb.svg";
 import ThumbGallery from "../../components/ThumbGallery";
 import "./detail.scss";
 import { useSelector } from "react-redux";
 import { shoesDetailSelector } from "../../store/selectors";
-import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import cartSlice from "../CartPage/cartSlice";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function DetailItemPage() {
-  let { id } = useParams();
+  let { id, pre } = useParams();
   let navigate = useNavigate();
   const shoes = useSelector(shoesDetailSelector(id));
   console.log(shoes);
@@ -35,10 +35,11 @@ export default function DetailItemPage() {
       priceSum: shoes.gia,
     };
     dispatch(cartSlice.actions.addCart(item));
+    toast.success(`Đã thêm ${shoes.tengiay} vào giỏ hàng ! `);
   };
 
   const handleGoback = () => {
-    navigate("/homepage");
+    navigate(`/${pre}`);
   };
 
   const [color, setColor] = useState("");
@@ -69,10 +70,32 @@ export default function DetailItemPage() {
 
   return (
     <div className="detail-container">
+      <Toaster
+        position="bottom-right"
+        reverseOrder={false}
+        toastOptions={{
+          // Define default options
+          className: "",
+          duration: 3000,
+          style: {
+            color: "#fff",
+            width: "300px",
+            height: "50px",
+            fontSize: "1.1rem",
+          },
+          // Default options for specific types
+          success: {
+            duration: 3000,
+            style: {
+              background: "rgb(56, 142, 60)",
+            },
+          },
+        }}
+      />
       <section className="detail-section">
         <div className="container detailItem-container">
           <div className="detail-img">
-            <ThumbGallery imgList={shoes.hinhs} />
+            <ThumbGallery imgList={shoes.hinhs} urlImg={shoes.urlanh} />
           </div>
           <div className="detail-info">
             <div className="detail-info__title">
@@ -135,10 +158,12 @@ export default function DetailItemPage() {
               <div className="choose__label">
                 <div className="label__category">
                   {" "}
-                  GIÀY {shoes.loaigiay.danhMuc.tendanhmuc.toUpperCase()}
+                  GIÀY{" "}
+                  {shoes.loaigiayHangDanhmuc.danhmuc.tendanhmuc.toUpperCase()}
                 </div>
                 <div className="label__type">
-                  {"LOẠI " + shoes.loaigiay.tenloai.toUpperCase()}
+                  {"LOẠI " +
+                    shoes.loaigiayHangDanhmuc.loaigiay.tenloai.toUpperCase()}
                 </div>
                 <div className="label__name">ADIDAS</div>
               </div>
@@ -203,7 +228,8 @@ export default function DetailItemPage() {
               >
                 TRỞ LẠI
               </Button>
-              <Button onClick={handleAddCart}
+              <Button
+                onClick={handleAddCart}
                 variant="contained"
                 sx={{
                   backgroundColor: "var(--button-second-color)",

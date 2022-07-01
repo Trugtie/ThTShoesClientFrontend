@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import { Controller, useForm } from "react-hook-form";
-import {useState} from 'react';
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import userApi from "../../api/userApi";
@@ -13,7 +13,7 @@ import "./style.scss";
 
 export default function RegisterPage() {
   let navigate = useNavigate();
-  const [error,setError] = useState("");
+  const [error, setError] = useState("");
   const schema = yup
     .object({
       taiKhoan: yup.object({
@@ -173,12 +173,8 @@ export default function RegisterPage() {
                         label="Số điện thoại"
                         placeholder="Nhập số điện thoại..."
                         variant="filled"
-                        type="number"
-                        onInput={(e) => {
-                          e.target.value = Math.max(0, parseInt(e.target.value))
-                            .toString()
-                            .slice(0, 10);
-                        }}
+                        type="tel"
+                        inputProps={{ maxLength: 10 }}
                         sx={{ background: "white" }}
                       />
                     )}

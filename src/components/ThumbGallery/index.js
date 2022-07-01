@@ -7,7 +7,7 @@ import "swiper/css/thumbs";
 import "./style.scss";
 import { FreeMode, Navigation, Thumbs } from "swiper";
 
-export default function ThumbGallery({ imgList }) {
+export default function ThumbGallery({ imgList, urlImg }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <div className="thumb-gallery">
@@ -20,13 +20,19 @@ export default function ThumbGallery({ imgList }) {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper2"
       >
-        {imgList.map((img) => {
-          return (
-            <SwiperSlide key={img.mahinh}>
-              <img src={img.duongdan} />
-            </SwiperSlide>
-          );
-        })}
+        {imgList.length > 0 ? (
+          imgList.map((img) => {
+            return (
+              <SwiperSlide key={img.mahinh}>
+                <img src={img.duongdan} />
+              </SwiperSlide>
+            );
+          })
+        ) : (
+          <SwiperSlide>
+            <img src={urlImg} />
+          </SwiperSlide>
+        )}
       </Swiper>
       <Swiper
         onSwiper={setThumbsSwiper}
@@ -37,13 +43,19 @@ export default function ThumbGallery({ imgList }) {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper"
       >
-         {imgList.map((img) => {
-          return (
-            <SwiperSlide key={img.mahinh}>
-              <img src={img.duongdan} />
-            </SwiperSlide>
-          );
-        })}
+        {imgList.length > 0 ? (
+          imgList.map((img) => {
+            return (
+              <SwiperSlide key={img.mahinh}>
+                <img src={img.duongdan} />
+              </SwiperSlide>
+            );
+          })
+        ) : (
+          <SwiperSlide>
+            <img src={urlImg} />
+          </SwiperSlide>
+        )}
       </Swiper>
     </div>
   );

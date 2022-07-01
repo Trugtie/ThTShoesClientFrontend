@@ -10,7 +10,6 @@ export const userSelector = (state) => state.user.current;
 export const cartSelector = (state) => state.cart.list;
 export const totalCartSelector = (state) => state.cart.totalCart;
 
-
 export const shoesDetailSelector = (id) => {
   return (state) =>
     state.shoesList.shoesList.giays.find((shoes) => shoes.magiay === id);
@@ -24,17 +23,30 @@ export const shoesListRemainingSelector = createSelector(
   priceSelector,
   (shoesList, searchText, category, type, price) => {
     return shoesList.filter((shoes) => {
-      if (category === null)
+      if (type.length === 0 && category === null)
         return (
-          shoes.tengiay.includes(searchText) &&
-          shoes.loaigiay.tenloai.includes(type) &&
+          shoes.tengiay.toLowerCase().includes(searchText.toLowerCase()) &&
+          shoes.gia >= price[0] &&
+          shoes.gia <= price[1]
+        );
+      else if (category === null)
+        return (
+          shoes.tengiay.toLowerCase().includes(searchText.toLowerCase()) &&
+          type.includes(shoes.loaigiayHangDanhmuc.loaigiay.tenloai) &&
+          shoes.gia >= price[0] &&
+          shoes.gia <= price[1]
+        );
+      else if (type.length === 0)
+        return (
+          shoes.tengiay.toLowerCase().includes(searchText.toLowerCase()) &&
+          shoes.loaigiayHangDanhmuc.danhmuc.tendanhmuc === category &&
           shoes.gia >= price[0] &&
           shoes.gia <= price[1]
         );
       return (
-        shoes.tengiay.includes(searchText) &&
-        shoes.loaigiay.danhMuc.tendanhmuc === category &&
-        shoes.loaigiay.tenloai.includes(type) &&
+        shoes.tengiay.toLowerCase().includes(searchText.toLowerCase()) &&
+        shoes.loaigiayHangDanhmuc.danhmuc.tendanhmuc === category &&
+        type.includes(shoes.loaigiayHangDanhmuc.loaigiay.tenloai) &&
         shoes.gia >= price[0] &&
         shoes.gia <= price[1]
       );

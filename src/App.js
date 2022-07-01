@@ -19,6 +19,7 @@ import LoginPage from "./pages/LoginPage";
 import PayPage from "./pages/PayPage";
 import ProductPage from "./pages/ProductPage";
 import RegisterPage from "./pages/RegisterPage";
+import PersonPage from "./pages/PersonPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -60,7 +61,8 @@ function App() {
         <Route path="/pay" element={<PayPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/detail/:id" element={<DetailItemPage />} />
+        <Route path="/personInfo" element={<PersonPage />} />
+        <Route path=":pre/detail/:id" element={<DetailItemPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route
@@ -77,12 +79,9 @@ function App() {
           path="/login/forgotpass2"
           element={<Navigate to="/forgotpass2" replace />}
         />
-        <Route
-          path="/alert/:mode"
-          element={<AlertPage />}
-        />
+        <Route path="/alert/:mode" element={<AlertPage />} />
       </Routes>
-      <ScrollTop/>
+      <ScrollTop />
       <Footer />
     </div>
   );

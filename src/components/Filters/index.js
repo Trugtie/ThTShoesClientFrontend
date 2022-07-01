@@ -5,11 +5,14 @@ import Slider from "@mui/material/Slider";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { useLayoutEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "./filters.scss";
 import filtersSlice from "./filtersSlice";
 
 export default function Filters({ categorySelect }) {
+  const currentLocate = useLocation();
+  let navigate = useNavigate();
   const dispatch = useDispatch();
   const [category, setCategory] = useState(categorySelect);
   const [types, setTypes] = useState([]);
@@ -22,6 +25,13 @@ export default function Filters({ categorySelect }) {
   const handleChangeCategory = (event, category) => {
     setCategory(category);
     dispatch(filtersSlice.actions.categoryFilterChange(category));
+    let locate = "";
+    if (category == "Nữ") locate = "/female";
+    else if (category == "Nam") locate = "/male";
+    else if (category == "Trẻ em") locate = "/child";
+    else if (category == "Phụ kiện") locate = "/accessory";
+    else locate = currentLocate.pathname;
+    navigate(`${locate}`);
   };
 
   const handlePrice = (event, newPrice) => {
