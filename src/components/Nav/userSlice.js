@@ -45,7 +45,6 @@ export default createSlice({
         state.status = STATUS_REJECTED;
       })
       .addCase(updateInfo.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.current = action.payload;
         localStorage.setItem("user", JSON.stringify(action.payload));
         state.status = STATUS_FULFILLED;

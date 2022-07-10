@@ -18,11 +18,6 @@ export default function LoginPage() {
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const status = useSelector(userStatusSelector);
-
-  if (status == "success") {
-    navigate("/");
-  }
-
   const getID = () =>
     JSON.parse(localStorage.getItem("access_token_decode")).manguoidung;
 
@@ -50,7 +45,11 @@ export default function LoginPage() {
   const onSubmit = async (data) => {
     const signInResult = await dispatch(login(data));
     const userID = await getID();
-    const getMeResult = await dispatch(getMyInfo(userID));
+    const getMeResult = await dispatch(getMyInfo(userID))
+      .unwrap()
+      .then((originalPromiseResult) => {
+        navigate("/");
+      });
   };
 
   return (

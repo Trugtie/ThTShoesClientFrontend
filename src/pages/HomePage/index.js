@@ -9,8 +9,13 @@ import ShowcaseShoesTab from "../../components/ShowcaseShoesTab";
 import ShowcaseAccessoriesTab from "../../components/ShowcaseAccessoriesTab"
 import Divider from "../../components/Divider";
 import SaleSlider from '../../components/SaleSlider'
+import {useSelector} from 'react-redux';
+import {giayLatestSelector,giayBestSellsSelector,phuKienLatestSelector} from '../../store/selectors';
 
 export default function HomePage() {
+  const shoesLastest = useSelector(giayLatestSelector);
+  const shoesBestSells = useSelector(giayBestSellsSelector);
+  const phuKienLatest = useSelector(phuKienLatestSelector);
   return (
     <div className="homepage-container">
       {/* Hero */}
@@ -65,14 +70,14 @@ export default function HomePage() {
       {/* Shoes Showcase */}
       <section className="shoes-section section--gray">
         <div className="container">
-          <ShowcaseShoesTab />
+          <ShowcaseShoesTab shoesLatest={shoesLastest} shoesBestSells={shoesBestSells}/>
         </div>
       </section>
       {/* Divider Section */}
       <Divider yellowWords="ThT" whiteWords="Shoes" height='406px'/>
       <section className="shoes-section section--main">
         <div className="container">
-        <ShowcaseAccessoriesTab/>
+        <ShowcaseAccessoriesTab phuKienLatest={phuKienLatest}/>
         </div>
       </section>
       {/* Sale */}

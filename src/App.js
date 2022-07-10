@@ -1,11 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/Footer";
 import Nav from "./components/Nav";
 import ScrollTop from "./components/ScrollTop";
-import { fetchShoes } from "./components/ShoesList/shoeslistSlice";
+import {
+  fetchShoes,
+  fetchShoesHomepage,
+} from "./components/ShoesList/shoeslistSlice";
 import AboutPage from "./pages/AboutPage";
 import AlertPage from "./pages/AlertPage";
 import CartPage from "./pages/CartPage";
@@ -20,69 +23,92 @@ import PayPage from "./pages/PayPage";
 import ProductPage from "./pages/ProductPage";
 import RegisterPage from "./pages/RegisterPage";
 import PersonPage from "./pages/PersonPage";
+import LoadingSpinner from "./components/LoadingSpiner";
+import { fetchEvent } from "./pages/EventPage/eventSlice";
+import {fetchAccessories} from "./components/ShoesList/accessoriesSlice";
 
 function App() {
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     dispatch(fetchShoes());
+    dispatch(fetchAccessories());
+    dispatch(fetchEvent());
+    dispatch(fetchShoesHomepage())
+      .unwrap()
+      .then((originalPromiseResult) => {
+        setIsLoading(false);
+      });
   }, []);
 
   return (
     <div className="App">
-      <Nav />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/homepage" element={<HomePage />} />
-        <Route path="/male" element={<ProductPage categorySelect="Nam" />} />
-        <Route
-          path="/homepage/male"
-          element={<Navigate to="/male" replace />}
-        />
-        <Route path="/female" element={<ProductPage categorySelect="Nữ" />} />
-        <Route
-          path="/homepage/female"
-          element={<Navigate to="/female" replace />}
-        />
-        <Route
-          path="/child"
-          element={<ProductPage categorySelect="Trẻ em" />}
-        />
-        <Route
-          path="/homepage/child"
-          element={<Navigate to="/child" replace />}
-        />
-        <Route
-          path="/accessory"
-          element={<ProductPage categorySelect="Phụ kiện" />}
-        />
-        <Route path="/event" element={<EventPage />} />
-        <Route path="/cart" element={<CartPage />} />
-        <Route path="/pay" element={<PayPage />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/personInfo" element={<PersonPage />} />
-        <Route path=":pre/detail/:id" element={<DetailItemPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route
-          path="/login/register"
-          element={<Navigate to="/register" replace />}
-        />
-        <Route path="/forgotpass" element={<ForgotPage />} />
-        <Route
-          path="/login/forgotpass"
-          element={<Navigate to="/forgotpass" replace />}
-        />
-        <Route path="/forgotpass2" element={<ForgotPage2 />} />
-        <Route
-          path="/login/forgotpass2"
-          element={<Navigate to="/forgotpass2" replace />}
-        />
-        <Route path="/alert/:mode" element={<AlertPage />} />
-      </Routes>
-      <ScrollTop />
-      <Footer />
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <Nav />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/homepage" element={<HomePage />} />
+            <Route
+              path="/male"
+              element={<ProductPage categorySelect="Nam" />}
+            />
+            <Route
+              path="/homepage/male"
+              element={<Navigate to="/male" replace />}
+            />
+            <Route
+              path="/female"
+              element={<ProductPage categorySelect="Nữ" />}
+            />
+            <Route
+              path="/homepage/female"
+              element={<Navigate to="/female" replace />}
+            />
+            <Route
+              path="/child"
+              element={<ProductPage categorySelect="Trẻ em" />}
+            />
+            <Route
+              path="/homepage/child"
+              element={<Navigate to="/child" replace />}
+            />
+            <Route
+              path="/accessory"
+              element={<ProductPage categorySelect="Phụ kiện" />}
+            />
+            <Route path="/event" element={<EventPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/pay" element={<PayPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/personInfo" element={<PersonPage />} />
+            <Route path=":pre/detail/:id" element={<DetailItemPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route
+              path="/login/register"
+              element={<Navigate to="/register" replace />}
+            />
+            <Route path="/forgotpass" element={<ForgotPage />} />
+            <Route
+              path="/login/forgotpass"
+              element={<Navigate to="/forgotpass" replace />}
+            />
+            <Route path="/forgotpass2" element={<ForgotPage2 />} />
+            <Route
+              path="/login/forgotpass2"
+              element={<Navigate to="/forgotpass2" replace />}
+            />
+            <Route path="/alert/:mode" element={<AlertPage />} />
+          </Routes>
+          <ScrollTop />
+          <Footer />
+        </>
+      )}
     </div>
   );
 }

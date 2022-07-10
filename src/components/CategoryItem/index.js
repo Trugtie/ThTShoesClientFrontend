@@ -22,7 +22,7 @@ export default function CategoryItem({ title, link, bg }) {
               },
           }}
         >
-          <Link component={RouterLink} to={link} underline="none" sx={{ color: "white" }}>
+          <Link component={RouterLink} to={link} underline="none" sx={{ color: "white" }}>XEM NGAY
           </Link>
         </Button>
       </div>

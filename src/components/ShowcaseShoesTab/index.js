@@ -4,7 +4,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import Slider from "../Slider"
+import Slider from "../Slider";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -20,10 +20,12 @@ function TabPanel(props) {
       {value === index && (
         <Box sx={{ p: 0 }}>
           <Typography
-          sx={{
-            height:'823px'
-          }}
-          >{children}</Typography>
+            sx={{
+              height: "823px",
+            }}
+          >
+            {children}
+          </Typography>
         </Box>
       )}
     </div>
@@ -43,7 +45,7 @@ function a11yProps(index) {
   };
 }
 
-export default function ShowcaseShoesTab() {
+export default function ShowcaseShoesTab({ shoesLatest, shoesBestSells }) {
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -60,17 +62,17 @@ export default function ShowcaseShoesTab() {
           sx={{
             "& .MuiTab-root": {
               color: "black",
-              fontSize:'20px',
-              fontWeight:'700'
+              fontSize: "20px",
+              fontWeight: "700",
             },
             "& .MuiTab-root.Mui-selected": {
               color: "white",
               fontWeight: "700",
-              backgroundColor:'black',
-              transition:'all .3s',
+              backgroundColor: "black",
+              transition: "all .3s",
             },
             "& .MuiTabs-indicator": {
-              display:'none',
+              display: "none",
             },
           }}
         >
@@ -79,10 +81,10 @@ export default function ShowcaseShoesTab() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <Slider bg='myswiper--main'/>
+        <Slider bg="myswiper--main" data={shoesLatest} mod={1} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-      <Slider bg='myswiper--main'/>
+        <Slider bg="myswiper--main" data={shoesBestSells} mod={1}/>
       </TabPanel>
     </Box>
   );

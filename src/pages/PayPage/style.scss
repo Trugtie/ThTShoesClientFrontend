@@ -21,7 +21,7 @@
   font-weight: 700;
   font-size: 15px;
   line-height: 26px;
-  margin-top:7px;
+  margin-top: 7px;
 }
 
 .pay-title--left {
@@ -51,4 +51,9 @@
 
 .sale-btn {
   flex-basis: 25%;
+}
+
+.voucher-error {
+  text-indent: 5px;
+  color: red;
 }

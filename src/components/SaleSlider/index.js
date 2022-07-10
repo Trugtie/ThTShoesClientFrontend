@@ -3,9 +3,13 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "./style.scss";
-import SaleItemLarge from '../SaleItemLarge';
+import SaleItemLarge from "../SaleItemLarge";
+import { useSelector } from "react-redux";
+import { eventSelector } from "../../store/selectors";
 
 export default function SaleSlider() {
+  const data = useSelector(eventSelector);
+
   return (
     <>
       <Swiper
@@ -18,9 +22,13 @@ export default function SaleSlider() {
         effect={"fade"}
         modules={[EffectFade, Autoplay]}
       >
-        <SwiperSlide style={{padding:'2rem 0rem'}}>
-          <SaleItemLarge/>
-        </SwiperSlide>
+        {data.map((item, index) => {
+          return (
+            <SwiperSlide key={index} style={{ padding: "2rem 0rem" }}>
+              <SaleItemLarge itemData={item} />
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
     </>
   );

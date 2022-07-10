@@ -43,7 +43,7 @@ function a11yProps(index) {
   };
 }
 
-export default function ShowcaseAccessoriesTab() {
+export default function ShowcaseAccessoriesTab({ phuKienLatest }) {
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -83,7 +83,7 @@ export default function ShowcaseAccessoriesTab() {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <Slider bg='myswiper--second'/>
+        <Slider bg='myswiper--second' data={phuKienLatest} mod={2}/>
       </TabPanel>
     </Box>
   );

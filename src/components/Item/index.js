@@ -6,7 +6,7 @@ import cartSlice from "../../pages/CartPage/cartSlice";
 import { useDispatch } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 
-export default function Item({ id, name, price = 0, img }) {
+export default function Item({ id, name, price = 0, img, category }) {
   const dispatch = useDispatch();
   const location = useLocation();
   const handleAddCart = (e) => {
@@ -17,12 +17,16 @@ export default function Item({ id, name, price = 0, img }) {
       img: img,
       count: 1,
       priceSum: price,
+      category: category,
     };
     dispatch(cartSlice.actions.addCart(item));
     toast.success(`Đã thêm ${name} vào giỏ hàng ! `);
   };
   let navigate = useNavigate();
   const handleDetail = () => {
+    if(location.pathname === "/")
+    navigate(`homepage/detail/${id}`);
+    else
     navigate(`${location.pathname}/detail/${id}`);
   };
 

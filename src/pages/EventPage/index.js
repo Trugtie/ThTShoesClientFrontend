@@ -1,7 +1,10 @@
 import SearchIcon from "@mui/icons-material/Search";
-import Slider from '../../components/Slider';
-import './style.scss';
+import Slider from "../../components/Slider";
+import "./style.scss";
+import { useSelector } from "react-redux";
+import { eventSelector } from "../../store/selectors";
 export default function EventPage() {
+  const data = useSelector(eventSelector);
   return (
     <div className="event-page-container">
       <section className="search-section">
@@ -12,10 +15,10 @@ export default function EventPage() {
       </section>
       <section className="event-section">
         <div className="container">
-            <h1 className='event-title'>SỰ KIỆN</h1>
-            <div className='event-slider'>
-                <Slider bg='myswiper--second'/>
-            </div>
+          <h1 className="event-title">SỰ KIỆN</h1>
+          <div className="event-slider">
+            <Slider bg="myswiper--second" data={data} mod={3} />
+          </div>
         </div>
       </section>
     </div>

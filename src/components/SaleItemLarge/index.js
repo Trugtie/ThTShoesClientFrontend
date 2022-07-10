@@ -2,14 +2,15 @@ import "./style.scss";
 import Logo from "../../assets/logo.svg";
 import Button from "@mui/material/Button";
 
-export default function SaleItemLarge() {
+export default function SaleItemLarge({ itemData }) {
+  const startDate = new Date(itemData.ngaybd);
+  const endDate = new Date(itemData.ngaykt);
   return (
     <div
       className="sale-large-container"
       style={{
-        background:
-          'url("https://images.alphacoders.com/241/241133.jpg") no-repeat center',
-        backgroundSize:'cover'
+        background: `url(${itemData.urlanh}) no-repeat center`,
+        backgroundSize: "cover",
       }}
     >
       <div className="sale-content">
@@ -17,9 +18,9 @@ export default function SaleItemLarge() {
           <img src={Logo} className="sale-logo" />
         </div>
         <div className="sale-description">
-          KHUYẾN MÃI CHO NGƯỜI MỚI <span className="sale-cost">GIẢM 50%</span>{" "}
-          <br />
-          <span className="sale-time">6/6 - 6/7</span>
+          {itemData.tieude}{" "}
+          <span className="sale-cost">GIẢM {itemData.giatrigiam}%</span> <br />
+          <span className="sale-time">{startDate.getDate()}/{startDate.getMonth()} - {endDate.getDate()}/{endDate.getMonth()}</span>
         </div>
         <div className="sale-button">
           <Button

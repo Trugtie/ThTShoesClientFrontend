@@ -6,6 +6,11 @@ const shoesApi = {
         const url = '/khachhang/giay';
         const {data} = await axios.get(`${API_URL}${url}`);
         return data;
+    },
+    getShoesHomepage: async () => {
+        const url = '/khachhang/trangchu'
+        const {data} = await axios.get(`${API_URL}${url}`);
+        return data;
     }
   }
   

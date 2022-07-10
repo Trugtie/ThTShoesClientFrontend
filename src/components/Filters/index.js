@@ -16,7 +16,7 @@ export default function Filters({ categorySelect }) {
   const dispatch = useDispatch();
   const [category, setCategory] = useState(categorySelect);
   const [types, setTypes] = useState([]);
-  const [price, setPrice] = useState([800000, 6000000]);
+  const [price, setPrice] = useState([0, 6000000]);
   useLayoutEffect(() => {
     setCategory(categorySelect);
     dispatch(filtersSlice.actions.categoryFilterChange(categorySelect));
@@ -157,7 +157,7 @@ export default function Filters({ categorySelect }) {
         </div>
         <Slider
           value={price}
-          min={800000}
+          min={0}
           max={6000000}
           onChange={handlePrice}
           valueLabelDisplay="off"

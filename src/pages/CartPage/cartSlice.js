@@ -61,5 +61,11 @@ export default createSlice({
       state.totalCart = action.payload;
       localStorage.setItem("totalCart", state.totalCart);
     },
+    resetCart: (state, action) => {
+      state.list = [];
+      state.totalCart = 0;
+      localStorage.removeItem("cart");
+      localStorage.removeItem("totalCart");
+    },
   },
 });

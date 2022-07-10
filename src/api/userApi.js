@@ -24,7 +24,12 @@ const userApi = {
     const url = "/khachhang"
     const { data } = await  authAxios.put(`${API_URL}${url}`,payload);
     return data;
+  },
+  changePass:(payload) => {
+    const url = '/doimatkhau';
+    return authAxios.put(`${API_URL}${url}`, payload);
   }
+
 };
 
 export default userApi;

@@ -14,6 +14,7 @@ import "./style.scss";
 export default function RegisterPage() {
   let navigate = useNavigate();
   const [error, setError] = useState("");
+  console.log(error);
   const schema = yup
     .object({
       taiKhoan: yup.object({
@@ -66,7 +67,6 @@ export default function RegisterPage() {
         navigate("/alert/register");
       })
       .catch(function (error) {
-        console.log("Fail: ", error.response.data);
         setError(error.response.data);
         reset();
       });
