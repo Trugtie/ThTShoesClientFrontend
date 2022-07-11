@@ -10,7 +10,7 @@ export default function AccountForm() {
   const schema = yup
     .object({
       manguoidung: yup.string().default(user.makh),
-      oldPassword: yup
+      oldPassowrd: yup
         .string()
         .required("Không được bỏ trống")
         .min(6, "Tối thiểu 6 ký tự")
@@ -68,7 +68,7 @@ export default function AccountForm() {
           </Grid>
           <Grid item xs={12}>
             <Controller
-              name="oldPassword"
+              name="oldPassowrd"
               defaultValue=""
               control={control}
               render={({ field }) => (
@@ -96,7 +96,7 @@ export default function AccountForm() {
                 textIndent: ".5rem",
               }}
             >
-              <p>{errors.oldPassword?.message}</p>
+              <p>{errors.oldPassowrd?.message}</p>
             </Grid>
           )}
           <Grid item xs={12}>

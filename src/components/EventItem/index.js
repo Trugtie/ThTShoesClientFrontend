@@ -1,12 +1,19 @@
 import "./style.scss";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+
 
 export default function EventItem({id, description, cost, img, startDate, endDate,title}) {
   let navigate = useNavigate();
-  const handleDetail = () => {
-    navigate("/detail");
+  const location = useLocation();
+
+ const handleDetail = () => {
+    if(location.pathname === "/")
+    navigate(`homepage/detailEvent/${id}`);
+    else
+    navigate(`${location.pathname}/detailEvent/${id}`);
   };
+  
   const start = new Date(startDate);
   const end = new Date(endDate);
 

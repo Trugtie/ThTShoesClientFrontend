@@ -16,6 +16,10 @@ export default createSlice({
       localStorage.getItem("user") !== null
         ? JSON.parse(localStorage.getItem("user"))
         : {},
+    history:
+      localStorage.getItem("user/history") !== null
+        ? JSON.parse(localStorage.getItem("user/history"))
+        : [],
   },
   reducers: {
     logout: (state, action) => {
@@ -24,6 +28,7 @@ export default createSlice({
       localStorage.removeItem("user");
       localStorage.removeItem("access_token");
       localStorage.removeItem("access_token_decode");
+      localStorage.removeItem("user/history");
     },
   },
   extraReducers: (builder) => {
@@ -48,6 +53,14 @@ export default createSlice({
         state.current = action.payload;
         localStorage.setItem("user", JSON.stringify(action.payload));
         state.status = STATUS_FULFILLED;
+      })
+      .addCase(fetchHistory.fulfilled, (state, action) => {
+        state.history = action.payload.donHangs;
+        localStorage.setItem(
+          "user/history",
+          JSON.stringify(action.payload.donHangs)
+        );
+        state.status = STATUS_FULFILLED;
       });
   },
 });
@@ -66,4 +79,9 @@ export const getMyInfo = createAsyncThunk("user/getInfo", async (params) =>
 
 export const updateInfo = createAsyncThunk("user/updateInfo", async (params) =>
   userApi.update(params)
+);
+
+export const fetchHistory = createAsyncThunk(
+  "user/fetchHistory",
+  async (params) => userApi.getHistory()
 );

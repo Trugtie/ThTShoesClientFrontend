@@ -7,6 +7,11 @@ const accessoriesApi = {
         const {data} = await axios.get(`${API_URL}${url}`);
         return data;
     },
+    getAllTypes: async () => {
+        const url = '/khachhang/loaiphukien';
+        const {data} = await axios.get(`${API_URL}${url}`);
+        return data;
+    },
   }
   
   export default accessoriesApi;

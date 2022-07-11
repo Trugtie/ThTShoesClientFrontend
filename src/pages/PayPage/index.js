@@ -142,27 +142,33 @@ export default function PayPage() {
     }
   };
   const onSubmitVoucher = (data) => {
-    const results = payApi.getVoucher(data.voucher);
-    results
-      .then(function (response) {
-        const data = response.data;
-        const dateEnd = new Date(data.ngaykt);
-        const dateNow = new Date();
-        if (dateNow > dateEnd) {
-          toast.error("Mã KM đã hết hạn !");
+    if (Object.keys(user).length > 0) {
+      const results = payApi.getVoucher(data.voucher);
+      results
+        .then(function (response) {
+          const data = response.data;
+          const dateEnd = new Date(data.ngaykt);
+          const dateNow = new Date();
+          if (dateNow > dateEnd) {
+            toast.error("Mã KM đã hết hạn !");
+            reset2();
+          } else {
+            setVoucher(response.data.makm);
+            setTotalVoucher(
+              totalCart - totalCart * (response.data.giatrigiam / 100)
+            );
+            toast.success("Mã KM hợp lệ");
+          }
+        })
+        .catch(function (error) {
           reset2();
-        } else {
-          setVoucher(response.data.makm);
-          setTotalVoucher(
-            totalCart - totalCart * (response.data.giatrigiam / 100)
-          );
-          toast.success("Mã KM hợp lệ");
-        }
-      })
-      .catch(function (error) {
-        reset2();
-        toast.error("Mã KM không hợp lệ !");
-      });
+          toast.error("Mã KM không hợp lệ !");
+        });
+    }
+    else{
+      reset2();
+      toast.error("Bạn chưa đăng nhập !");
+    }
   };
 
   return (

@@ -1,0 +1,69 @@
+.event-article {
+  background-color: rgb(24, 24, 24);
+  text-align: left;
+  padding: 1rem 2rem;
+  color: white;
+  .event-link {
+    color: rgb(59, 183, 241);
+    transition: all 0.3s;
+  }
+  .event-link:hover {
+    color: rgb(1, 118, 172);
+  }
+
+  .sale-icon {
+    width: 60px;
+    margin-right: 1rem;
+  }
+
+  .event-title {
+    margin: 0;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .event-description {
+    font-size: 2rem;
+    font-weight: normal;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+  }
+  .time-bold {
+    font-weight: bold;
+  }
+
+  .event-time {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .code-box {
+    background-color: yellow;
+    padding: 0.3rem 2rem;
+    font-weight: bold;
+    color: black;
+  }
+
+  .event-code {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  .note-red {
+    color: rgb(255, 38, 38);
+  }
+
+  .event-notice {
+    font-size: 1.2rem;
+  }
+}
+.detailItem-container--event {
+  display: block;
+}
+
+.event-img {
+  height: 400px;
+}

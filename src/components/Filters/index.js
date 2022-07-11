@@ -6,11 +6,17 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { useLayoutEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  shoesTypesSelector,
+  accessoriesTypesSelector,
+} from "../../store/selectors";
 import "./filters.scss";
 import filtersSlice from "./filtersSlice";
 
 export default function Filters({ categorySelect }) {
+  const shoesTypes = useSelector(shoesTypesSelector);
+  const accessoriesTypes = useSelector(accessoriesTypesSelector);
   const currentLocate = useLocation();
   let navigate = useNavigate();
   const dispatch = useDispatch();
@@ -80,66 +86,43 @@ export default function Filters({ categorySelect }) {
       <h1 className="filter-title">Loại giày</h1>
       <div className="filter-type">
         <FormGroup>
-          <FormControlLabel
-            labelPlacement="start"
-            control={
-              <Checkbox
-                value="Bóng đá"
-                checked={types.includes("Bóng đá")}
-                onChange={handleChangeTypes}
+          {currentLocate.pathname !== "/accessory" ? (
+            <>
+              {shoesTypes.map((type) => (
+                <FormControlLabel
+                  key={type.maloaigiay}
+                  labelPlacement="start"
+                  control={
+                    <Checkbox
+                      value={type.tenloai}
+                      checked={types.includes(type.tenloai)}
+                      onChange={handleChangeTypes}
+                    />
+                  }
+                  label={type.tenloai}
+                  sx={{ justifyContent: "space-between", margin: "0" }}
+                />
+              ))}
+            </>
+          ) : (
+            <>
+            {accessoriesTypes.map((type) => (
+              <FormControlLabel
+                key={type.maLoaiPhuKien}
+                labelPlacement="start"
+                control={
+                  <Checkbox
+                    value={type.tenLoaiPhuKien}
+                    checked={types.includes(type.tenLoaiPhuKien)}
+                    onChange={handleChangeTypes}
+                  />
+                }
+                label={type.tenLoaiPhuKien}
+                sx={{ justifyContent: "space-between", margin: "0" }}
               />
-            }
-            label="Bóng đá"
-            sx={{ justifyContent: "space-between", margin: "0" }}
-          />
-          <FormControlLabel
-            labelPlacement="start"
-            control={
-              <Checkbox
-                value="Bóng rổ"
-                checked={types.includes("Bóng rổ")}
-                onChange={handleChangeTypes}
-              />
-            }
-            label="Bóng rổ"
-            sx={{ justifyContent: "space-between", margin: "0" }}
-          />
-          <FormControlLabel
-            labelPlacement="start"
-            control={
-              <Checkbox
-                value="Chạy bộ"
-                checked={types.includes("Chạy bộ")}
-                onChange={handleChangeTypes}
-              />
-            }
-            label="Chạy bộ"
-            sx={{ justifyContent: "space-between", margin: "0" }}
-          />
-          <FormControlLabel
-            labelPlacement="start"
-            control={
-              <Checkbox
-                value="Quần vợt"
-                checked={types.includes("Quần vợt")}
-                onChange={handleChangeTypes}
-              />
-            }
-            label="Quần vợt"
-            sx={{ justifyContent: "space-between", margin: "0" }}
-          />
-          <FormControlLabel
-            labelPlacement="start"
-            control={
-              <Checkbox
-                value="Cầu lông"
-                checked={types.includes("Cầu lông")}
-                onChange={handleChangeTypes}
-              />
-            }
-            label="Cầu lông"
-            sx={{ justifyContent: "space-between", margin: "0" }}
-          />
+            ))}
+          </>
+          )}
         </FormGroup>
       </div>
       <h1 className="filter-title">Mức giá</h1>

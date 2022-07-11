@@ -5,8 +5,11 @@ export const categorySelector = (state) => state.filters.category;
 export const typeSelector = (state) => state.filters.type;
 export const priceSelector = (state) => state.filters.price;
 export const shoesListSelector = (state) => state.shoesList.shoesList.giays;
+export const shoesTypesSelector = (state) => state.shoesList.types;
 export const accessoriesSelector = (state) => state.accessories.list;
+export const accessoriesTypesSelector = (state) => state.accessories.types;
 export const userStatusSelector = (state) => state.user.status;
+export const userHistorySelector = (state) => state.user.history;
 export const userSelector = (state) => state.user.current;
 export const cartSelector = (state) => state.cart.list;
 export const totalCartSelector = (state) => state.cart.totalCart;
@@ -24,6 +27,12 @@ export const shoesDetailSelector = (id) => {
 export const accessoryDetailSelector = (id) => {
   return (state) =>
     state.accessories.list.find((accessory) => accessory.mapk === id);
+};
+export const eventDetailSelector = (id) => {
+  return (state) => state.event.list.find((event) => event.makm === id);
+};
+export const historyDetailSelector = (id) => {
+  return (state) => state.user.history.find((history) => history.madon === id);
 };
 
 export const shoesListRemainingSelector = createSelector(
@@ -82,7 +91,7 @@ export const accessoriesListRemainingSelector = createSelector(
       else if (category === null)
         return (
           accessory.tenpk.toLowerCase().includes(searchText.toLowerCase()) &&
-          type.includes(accessory.loaiPhuKien) &&
+          type.includes(accessory.loaiPhuKien.tenLoaiPhuKien) &&
           accessory.gia >= price[0] &&
           accessory.gia <= price[1]
         );
@@ -93,8 +102,8 @@ export const accessoriesListRemainingSelector = createSelector(
           accessory.gia <= price[1]
         );
       return (
-        accessory.tengiay.toLowerCase().includes(searchText.toLowerCase()) &&
-        type.includes(accessory.loaiPhuKien) &&
+        accessory.tenpk.toLowerCase().includes(searchText.toLowerCase()) &&
+        type.includes(accessory.loaiPhuKien.tenLoaiPhuKien) &&
         accessory.gia >= price[0] &&
         accessory.gia <= price[1]
       );

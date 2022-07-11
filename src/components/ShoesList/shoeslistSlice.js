@@ -16,9 +16,13 @@ export default createSlice({
         ? JSON.parse(sessionStorage.getItem("shoeslist"))
         : [],
     shoesListHomepage:
-        sessionStorage.getItem("shoesListHomepage") !== null
-          ? JSON.parse(sessionStorage.getItem("shoesListHomepage"))
-          : [],    
+      sessionStorage.getItem("shoesListHomepage") !== null
+        ? JSON.parse(sessionStorage.getItem("shoesListHomepage"))
+        : [],
+    types:
+      sessionStorage.getItem("shoesTypes") !== null
+        ? JSON.parse(sessionStorage.getItem("shoesTypes"))
+        : [],
   },
   extraReducers: (builder) => {
     builder
@@ -40,10 +44,28 @@ export default createSlice({
       .addCase(fetchShoesHomepage.fulfilled, (state, action) => {
         state.shoesListHomepage = action.payload;
         state.status = STATUS_FULFILLED;
-        sessionStorage.setItem("shoesListHomepage", JSON.stringify(state.shoesList));
+        sessionStorage.setItem(
+          "shoesListHomepage",
+          JSON.stringify(state.shoesList)
+        );
       })
       .addCase(fetchShoesHomepage.rejected, (state, action) => {
         state.shoesListHomepage = [];
+        state.status = STATUS_REJECTED;
+      })
+      .addCase(fetchAllShoesTypes.pending, (state, action) => {
+        state.status = STATUS_FULFILLED;
+      })
+      .addCase(fetchAllShoesTypes.fulfilled, (state, action) => {
+        state.types = action.payload.loaiGiays;
+        state.status = STATUS_FULFILLED;
+        sessionStorage.setItem(
+          "shoesTypes",
+          JSON.stringify(state.types)
+        );
+      })
+      .addCase(fetchAllShoesTypes.rejected, (state, action) => {
+        state.types = [];
         state.status = STATUS_REJECTED;
       });
   },
@@ -55,4 +77,9 @@ export const fetchShoes = createAsyncThunk("shoes/fetchShoes", async () =>
 export const fetchShoesHomepage = createAsyncThunk(
   "shoes/fetchShoesHomepage",
   async () => shoesApi.getShoesHomepage()
+);
+
+export const fetchAllShoesTypes = createAsyncThunk(
+  "shoes/fetchAllShoesTypes",
+  async () => shoesApi.getAllTypes()
 );

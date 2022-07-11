@@ -28,7 +28,12 @@ const userApi = {
   changePass:(payload) => {
     const url = '/doimatkhau';
     return authAxios.put(`${API_URL}${url}`, payload);
-  }
+  },
+  getHistory: async () => {
+    const url = `/khachhang/dathang/lichsudathang`;
+    const { data } = await authAxios.get(`${API_URL}${url}`);
+    return data;
+  },
 
 };
 

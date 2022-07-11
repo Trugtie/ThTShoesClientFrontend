@@ -1,0 +1,36 @@
+.history-title {
+  font-size: 2rem;
+  text-align: left;
+  margin-top: 0.5rem;
+  margin-left: 0.8rem;
+}
+
+.history-divider {
+  margin-bottom: 1rem;
+  color: white;
+}
+.history-info {
+  text-align: left;
+  padding: 1rem 15rem;
+  font-size: 1.3rem;
+}
+.container-history {
+  margin: 1.5rem 0rem;
+  background: rgb(31, 31, 31);
+  color: white;
+  border-radius: 0 20px 0 0;
+}
+
+.history-detail {
+  padding: 1rem 2rem;
+}
+
+.history-text--bold {
+  font-weight: bold;
+}
+
+.history-text {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
