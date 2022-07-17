@@ -88,67 +88,67 @@ export default function PayPage() {
     const phukiens = cartList.filter((item) => {
       return item.category === "Phụ kiện";
     });
-    const giaysObject = giays.reduce(
-      (a, v) => ({
-        ...a,
-        [v.id]: {
-          masize: v.size.masize,
-          mamau: v.color.mamau,
-          soluong: v.count,
-        },
-      }),
-      {}
+
+    
+
+    const giaysObject = giays.map( value =>{
+      return {
+        magiay:value.id,
+        masize: value.size.masize,
+        mamau: value.color.mamau,
+        soluong: value.count,
+      }
+    }
     );
-    console.log(giaysObject);
     const phukiensObject = phukiens.reduce(
       (a, v) => ({ ...a, [v.id]: v.count }),
       {}
     );
 
-    // if (Object.keys(user).length > 0) {
-    //   const payload = {
-    //     nguoinhan: data.ho + " " + data.ten,
-    //     diachi: data.diachi,
-    //     ghichu: data.note,
-    //     maloaithanhtoan: method,
-    //     maKhuyenMai: voucher,
-    //     giays: giaysObject,
-    //     phukiens: phukiensObject,
-    //   };
-    //   payApi
-    //     .payOrderToken(payload)
-    //     .then(function (response) {
-    //       toast.success("Đặt hàng thành công");
-    //       dispatch(cartSlice.actions.resetCart());
-    //       setTimeout(() => navigate("/"), 3000);
-    //     })
-    //     .catch(function (error) {
-    //       toast.error("Đặt hàng thất bại");
-    //     });
-    // } else {
-    //   const payload = {
-    //     ho: data.ho,
-    //     ten: data.ten,
-    //     sdt: data.sdt,
-    //     diachi: data.diachi,
-    //     email: data.email,
-    //     ghichu: data.note,
-    //     maloaithanhtoan: method,
-    //     maKhuyenMai: voucher,
-    //     giays: giaysObject,
-    //     phukiens: phukiensObject,
-    //   };
-    //   payApi
-    //     .payOrderNonToken(payload)
-    //     .then(function (response) {
-    //       toast.success("Đặt hàng thành công");
-    //       dispatch(cartSlice.actions.resetCart());
-    //       setTimeout(() => navigate("/"), 3000);
-    //     })
-    //     .catch(function (error) {
-    //       toast.error("Đặt hàng thất bại");
-    //     });
-    // }
+    if (Object.keys(user).length > 0) {
+      const payload = {
+        nguoinhan: data.ho + " " + data.ten,
+        diachi: data.diachi,
+        ghichu: data.note,
+        maloaithanhtoan: method,
+        maKhuyenMai: voucher,
+        giays: giaysObject,
+        phukiens: phukiensObject,
+      };
+      payApi
+        .payOrderToken(payload)
+        .then(function (response) {
+          toast.success("Đặt hàng thành công");
+          dispatch(cartSlice.actions.resetCart());
+          setTimeout(() => navigate("/"), 3000);
+        })
+        .catch(function (error) {
+          toast.error("Đặt hàng thất bại");
+        });
+    } else {
+      const payload = {
+        ho: data.ho,
+        ten: data.ten,
+        sdt: data.sdt,
+        diachi: data.diachi,
+        email: data.email,
+        ghichu: data.note,
+        maloaithanhtoan: method,
+        maKhuyenMai: voucher,
+        giays: giaysObject,
+        phukiens: phukiensObject,
+      };
+      payApi
+        .payOrderNonToken(payload)
+        .then(function (response) {
+          toast.success("Đặt hàng thành công");
+          dispatch(cartSlice.actions.resetCart());
+          setTimeout(() => navigate("/"), 3000);
+        })
+        .catch(function (error) {
+          toast.error("Đặt hàng thất bại");
+        });
+    }
   };
   const onSubmitVoucher = (data) => {
     if (Object.keys(user).length > 0) {
