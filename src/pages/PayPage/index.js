@@ -58,6 +58,7 @@ export default function PayPage() {
   const [totalVoucher, setTotalVoucher] = useState(totalCart);
   const [voucher, setVoucher] = useState("");
   const cartList = useSelector(cartSelector);
+  console.log(cartList);
   const [method, setMethod] = useState("PTTT1");
 
   const handleMethod = (event) => {
@@ -164,8 +165,7 @@ export default function PayPage() {
           reset2();
           toast.error("Mã KM không hợp lệ !");
         });
-    }
-    else{
+    } else {
       reset2();
       toast.error("Bạn chưa đăng nhập !");
     }
@@ -230,13 +230,25 @@ export default function PayPage() {
                   <TableBody>
                     {cartList.map((row) => (
                       <TableRow
-                        key={row.name}
+                        key={
+                          row.id.includes("GA")
+                            ? row.id + row.color.mamau + row.size.masize
+                            : row.id
+                        }
                         sx={{
                           "&:last-child td, &:last-child th": { border: 0 },
                         }}
                       >
                         <TableCell component="th" scope="row">
-                          {row.name} x {row.count}
+                          {row.id.includes("GA")
+                            ? `${row.name} x Size ${row.size.tensize} x ${
+                                row.color.tenmau
+                              } x ${row.count} ${
+                                row.id.includes("PK") ? "cái" : "đôi"
+                              }`
+                            : `${row.name} x ${row.count} ${
+                                row.id.includes("PK") ? "cái" : "đôi"
+                              }`}
                         </TableCell>
                         <TableCell align="center">
                           {row.priceSum.toLocaleString("vi-VN", {

@@ -49,6 +49,8 @@ export default function CartPage() {
                 <TableRow>
                   <TableCell>SẢN PHẨM</TableCell>
                   <TableCell align="center">GIÁ</TableCell>
+                  <TableCell align="center">SIZE</TableCell>
+                  <TableCell align="center">MÀU SẮC</TableCell>
                   <TableCell align="center">SỐ LƯỢNG</TableCell>
                   <TableCell align="center">THÀNH TIỀN </TableCell>
                   <TableCell align="center"></TableCell>
@@ -57,7 +59,11 @@ export default function CartPage() {
               <TableBody>
                 {listItems.map((item) => (
                   <TableRow
-                    key={item.id}
+                    key={
+                      item.id.includes("GA")
+                        ? item.id + item.size.masize + item.color.mamau
+                        : item.id
+                    }
                     sx={{ "&:last-child td, &:last-child th": { border: "0" } }}
                   >
                     <TableCell
@@ -74,6 +80,22 @@ export default function CartPage() {
                         currency: "VND",
                       })}
                     </TableCell>
+                    {item.id.includes("GA") ? (
+                      <>
+                        <TableCell align="center">
+                          {item.size.tensize}
+                        </TableCell>
+                        <TableCell align="center">
+                          {item.color.tenmau}
+                        </TableCell>
+                      </>
+                    ) : (
+                      <>
+                        <TableCell align="center">Không có</TableCell>
+                        <TableCell align="center">Không có</TableCell>
+                      </>
+                    )}
+
                     <TableCell align="center">
                       <div className="table-cell-count">
                         <IconButton
@@ -83,7 +105,7 @@ export default function CartPage() {
                             "&:hover": { background: "black", color: "white" },
                           }}
                           onClick={() =>
-                            dispatch(cartSlice.actions.inCreaseCart(item.id))
+                            dispatch(cartSlice.actions.inCreaseCart(item))
                           }
                         >
                           +
@@ -103,7 +125,7 @@ export default function CartPage() {
                         />
                         <IconButton
                           onClick={() =>
-                            dispatch(cartSlice.actions.deCreaseCart(item.id))
+                            dispatch(cartSlice.actions.deCreaseCart(item))
                           }
                           sx={{
                             background: "#DCDCDC",
@@ -125,7 +147,7 @@ export default function CartPage() {
                       <IconButton
                         aria-label="delete"
                         onClick={() =>
-                          dispatch(cartSlice.actions.removeCart(item.id))
+                          dispatch(cartSlice.actions.removeCart(item))
                         }
                       >
                         <DeleteIcon sx={{ color: "#3F51B5" }} />

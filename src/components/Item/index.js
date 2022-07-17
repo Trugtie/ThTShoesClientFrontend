@@ -24,10 +24,8 @@ export default function Item({ id, name, price = 0, img, category }) {
   };
   let navigate = useNavigate();
   const handleDetail = () => {
-    if(location.pathname === "/")
-    navigate(`homepage/detail/${id}`);
-    else
-    navigate(`${location.pathname}/detail/${id}`);
+    if (location.pathname === "/") navigate(`homepage/detail/${id}`);
+    else navigate(`${location.pathname}/detail/${id}`);
   };
 
   return (
@@ -83,19 +81,21 @@ export default function Item({ id, name, price = 0, img, category }) {
         >
           Xem chi tiết
         </Button>
-        <Button
-          onClick={handleAddCart}
-          variant="contained"
-          sx={{
-            width: "120px",
-            backgroundColor: "var(--button-second-color)",
-            "&:hover": {
-              backgroundColor: "var(--button-first-color)",
-            },
-          }}
-        >
-          <AddShoppingCartOutlinedIcon />
-        </Button>
+        {category === "Phụ kiện" && (
+          <Button
+            onClick={handleAddCart}
+            variant="contained"
+            sx={{
+              width: "120px",
+              backgroundColor: "var(--button-second-color)",
+              "&:hover": {
+                backgroundColor: "var(--button-first-color)",
+              },
+            }}
+          >
+            <AddShoppingCartOutlinedIcon />
+          </Button>
+        )}
       </div>
     </div>
   );

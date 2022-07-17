@@ -15,7 +15,11 @@ export default createSlice({
   reducers: {
     addCart: (state, action) => {
       const index = state.list.findIndex((item) => {
-        return item.id === action.payload.id;
+        return item.id.includes("GA")
+          ? item.id === action.payload.id &&
+              item.color.mamau === action.payload.color.mamau &&
+              item.size.masize === action.payload.size.masize
+          : item.id === action.payload.id;
       });
       if (index !== -1) {
         state.list[index].count += 1;
@@ -25,7 +29,11 @@ export default createSlice({
     },
     removeCart: (state, action) => {
       const index = state.list.findIndex((item) => {
-        return item.id === action.payload.id;
+        return item.id.includes("GA")
+          ? item.id === action.payload.id &&
+              item.color.mamau === action.payload.color.mamau &&
+              item.size.masize === action.payload.size.masize
+          : item.id === action.payload.id;
       });
       state.list.splice(index, 1);
       if (state.list.length > 0) {
@@ -37,7 +45,11 @@ export default createSlice({
     },
     inCreaseCart: (state, action) => {
       const index = state.list.findIndex((item) => {
-        return item.id === action.payload;
+        return item.id.includes("GA")
+          ? item.id === action.payload.id &&
+              item.color.mamau === action.payload.color.mamau &&
+              item.size.masize === action.payload.size.masize
+          : item.id === action.payload.id;
       });
       state.list[index].count += 1;
       state.list[index].priceSum += state.list[index].price;
@@ -45,7 +57,11 @@ export default createSlice({
     },
     deCreaseCart: (state, action) => {
       const index = state.list.findIndex((item) => {
-        return item.id === action.payload;
+        return item.id.includes("GA")
+          ? item.id === action.payload.id &&
+              item.color.mamau === action.payload.color.mamau &&
+              item.size.masize === action.payload.size.masize
+          : item.id === action.payload.id;
       });
       state.list[index].count -= 1;
       state.list[index].priceSum -= state.list[index].price;
