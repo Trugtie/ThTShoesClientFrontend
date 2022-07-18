@@ -1,10 +1,15 @@
 import "./style.scss";
 import Logo from "../../assets/logo.svg";
 import Button from "@mui/material/Button";
+import { useNavigate } from "react-router-dom";
 
 export default function SaleItemLarge({ itemData }) {
+  const navigate = useNavigate();
   const startDate = new Date(itemData.ngaybd);
   const endDate = new Date(itemData.ngaykt);
+  const handleClick = () => {
+    navigate(`/event/detailEvent/${itemData.makm}`);
+  };
   return (
     <div
       className="sale-large-container"
@@ -20,10 +25,14 @@ export default function SaleItemLarge({ itemData }) {
         <div className="sale-description">
           {itemData.tieude}{" "}
           <span className="sale-cost">GIẢM {itemData.giatrigiam}%</span> <br />
-          <span className="sale-time">{startDate.getDate()}/{startDate.getMonth()} - {endDate.getDate()}/{endDate.getMonth()}</span>
+          <span className="sale-time">
+            {startDate.getDate()}/{startDate.getMonth()} - {endDate.getDate()}/
+            {endDate.getMonth()}
+          </span>
         </div>
         <div className="sale-button">
           <Button
+            onClick={handleClick}
             variant="outlined"
             sx={{
               color: "white",
