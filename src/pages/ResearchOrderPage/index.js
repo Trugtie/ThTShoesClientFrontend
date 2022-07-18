@@ -1,13 +1,14 @@
 import "./style.scss";
 import { TextField, Button } from "@mui/material";
 import DetailHistoryPage from "../DetailHistoryPage";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import userApi from "../../api/userApi";
 import toast, { Toaster } from "react-hot-toast";
 
 export default function ResearchOrderPage() {
   const [id, setId] = useState("");
   const [data, setData] = useState(null);
+  const inputElement = useRef();
   const handleChange = (e) => {
     setId(e.target.value.toUpperCase());
   };
@@ -24,6 +25,8 @@ export default function ResearchOrderPage() {
           toast.error("Tra cứu thất bại !");
         });
     }
+    setId("");
+    inputElement.current.focus();
   };
   return (
     <div className="orderresearch-container">
@@ -63,6 +66,7 @@ export default function ResearchOrderPage() {
           <form>
             <div className="research-content">
               <TextField
+                inputRef={inputElement}
                 id="outlined-basic"
                 label="Mã khách hàng"
                 variant="outlined"
@@ -81,7 +85,7 @@ export default function ResearchOrderPage() {
           </form>
         </div>
       </section>
-      {data && <DetailHistoryPage history={data}/>}
+      {data && <DetailHistoryPage history={data} />}
     </div>
   );
 }
