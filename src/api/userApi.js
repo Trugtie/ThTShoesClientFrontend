@@ -20,13 +20,13 @@ const userApi = {
     const url = "/khachhang/dangky";
     return axios.post(`${API_URL}${url}`, payload);
   },
-  update:async(payload) => {
-    const url = "/khachhang"
-    const { data } = await  authAxios.put(`${API_URL}${url}`,payload);
+  update: async (payload) => {
+    const url = "/khachhang";
+    const { data } = await authAxios.put(`${API_URL}${url}`, payload);
     return data;
   },
-  changePass:(payload) => {
-    const url = '/doimatkhau';
+  changePass: (payload) => {
+    const url = "/doimatkhau";
     return authAxios.put(`${API_URL}${url}`, payload);
   },
   getHistory: async () => {
@@ -34,7 +34,10 @@ const userApi = {
     const { data } = await authAxios.get(`${API_URL}${url}`);
     return data;
   },
-
+  getHistoryNoneToken: async (payload) => {
+    const url = `/khachhang/dathang/khachvanglai/lichsudathang/${payload}`;
+    return  await axios.get(`${API_URL}${url}`);
+  },
 };
 
 export default userApi;

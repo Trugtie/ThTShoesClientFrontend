@@ -3,33 +3,37 @@ import { useDispatch } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/Footer";
+import LoadingSpinner from "./components/LoadingSpiner";
 import Nav from "./components/Nav";
 import ScrollTop from "./components/ScrollTop";
 import {
+  fetchAccessories,
+  fetchAccessoriesTypes,
+} from "./components/ShoesList/accessoriesSlice";
+import {
+  fetchAllShoesTypes,
   fetchShoes,
   fetchShoesHomepage,
-  fetchAllShoesTypes
 } from "./components/ShoesList/shoeslistSlice";
 import AboutPage from "./pages/AboutPage";
 import AlertPage from "./pages/AlertPage";
-import DetailHistoryPage from "./pages/DetailHistoryPage";
 import CartPage from "./pages/CartPage";
 import ContactPage from "./pages/ContactPage";
+import DetailEventPage from "./pages/DetailEventPage";
+import DetailHistoryPage from "./pages/DetailHistoryPage";
 import DetailItemPage from "./pages/DetailItemPage";
 import EventPage from "./pages/EventPage";
+import { fetchEvent } from "./pages/EventPage/eventSlice";
 import ForgotPage from "./pages/ForgotPage";
 import ForgotPage2 from "./pages/ForgotPage2";
+import HistoryOrderPage from "./pages/HistoryOrderPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import PayPage from "./pages/PayPage";
-import HistoryOrderPage from "./pages/HistoryOrderPage";
-import ProductPage from "./pages/ProductPage";
-import DetailEventPage from "./pages/DetailEventPage";
-import RegisterPage from "./pages/RegisterPage";
 import PersonPage from "./pages/PersonPage";
-import LoadingSpinner from "./components/LoadingSpiner";
-import { fetchEvent } from "./pages/EventPage/eventSlice";
-import { fetchAccessories,fetchAccessoriesTypes } from "./components/ShoesList/accessoriesSlice";
+import ProductPage from "./pages/ProductPage";
+import RegisterPage from "./pages/RegisterPage";
+import ResearchOrderPage from "./pages/ResearchOrderPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -92,13 +96,11 @@ function App() {
             <Route path="/history" element={<HistoryOrderPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/researchorder" element={<ResearchOrderPage />} />
             <Route path="/personInfo" element={<PersonPage />} />
             <Route path=":pre/detail/:id" element={<DetailItemPage />} />
             <Route path=":pre/detailEvent/:id" element={<DetailEventPage />} />
-            <Route
-              path="/detailHistory/:id"
-              element={<DetailHistoryPage />}
-            />
+            <Route path="/detailHistory/:id" element={<DetailHistoryPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route
@@ -116,6 +118,7 @@ function App() {
               element={<Navigate to="/forgotpass2" replace />}
             />
             <Route path="/alert/:mode" element={<AlertPage />} />
+            <Route path="/alert/:mode/:id" element={<AlertPage />} />
           </Routes>
           <ScrollTop />
           <Footer />

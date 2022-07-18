@@ -11,9 +11,13 @@ import { useParams } from "react-router-dom";
 import { historyDetailSelector } from "../../store/selectors";
 import "./style.scss";
 
-export default function DetailHistoryPage() {
+export default function DetailHistoryPage({ history }) {
   const { id } = useParams();
-  const data = useSelector(historyDetailSelector(id));
+  let data = useSelector(historyDetailSelector(id));
+  if (history !== undefined) {
+    data = history;
+  }
+  console.log(history);
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.black,
@@ -56,7 +60,7 @@ export default function DetailHistoryPage() {
       <section className="history-section">
         <div className="container container-history">
           <h1 className="history-title">Thông tin đơn hàng</h1>
-          <hr className='history-divider'/>
+          <hr className="history-divider" />
           <div className="history-info">
             <div className="history-text">
               <span className="history-text--bold">Mã đơn:</span>
@@ -86,7 +90,7 @@ export default function DetailHistoryPage() {
             </div>
           </div>
           <h1 className="history-title">Chi tiết đơn hàng</h1>
-          <hr className='history-divider' />
+          <hr className="history-divider" />
           <div className="history-detail">
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -96,6 +100,8 @@ export default function DetailHistoryPage() {
                     <StyledTableCell align="center">
                       Tên sản phẩm
                     </StyledTableCell>
+                    <StyledTableCell align="center">Size</StyledTableCell>
+                    <StyledTableCell align="center">Màu sắc</StyledTableCell>
                     <StyledTableCell align="center">Số lượng</StyledTableCell>
                     <StyledTableCell align="center">Tổng giá</StyledTableCell>
                   </TableRow>
@@ -109,6 +115,12 @@ export default function DetailHistoryPage() {
                         </StyledTableCell>
                         <StyledTableCell align="center">
                           {row.tengiay}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          {row.size.tensize}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          {row.mauSac.tenmau}
                         </StyledTableCell>
                         <StyledTableCell align="center">
                           {row.soluong} sản phẩm
@@ -130,6 +142,12 @@ export default function DetailHistoryPage() {
                         </StyledTableCell>
                         <StyledTableCell align="center">
                           {row.tenphukien}
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          Không có
+                        </StyledTableCell>
+                        <StyledTableCell align="center">
+                          Không có
                         </StyledTableCell>
                         <StyledTableCell align="center">
                           {row.soluong} sản phẩm

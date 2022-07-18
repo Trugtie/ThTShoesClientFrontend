@@ -7,9 +7,13 @@ import { useNavigate,useParams } from "react-router-dom";
 export default function AlertPage() {
   let navigate = useNavigate();
   const mode = useParams().mode;
+  const id = useParams().id;
   let title = "";
   if(mode === 'register'){
     title='Đăng ký thành công hãy vào email vừa đăng ký để kích hoạt tài khoản'
+  }
+  else if (mode === 'visitorOrder'){
+    title=`Bạn đã đặt hàng thành công vui lòng lưu lại mã đơn hàng này để có thể tra cứu thông tin đơn hàng: ${id}`;
   }
   const handleSend = () => {
     navigate("/");

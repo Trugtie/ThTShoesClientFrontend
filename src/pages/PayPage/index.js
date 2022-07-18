@@ -141,7 +141,8 @@ export default function PayPage() {
         .then(function (response) {
           toast.success("Đặt hàng thành công");
           dispatch(cartSlice.actions.resetCart());
-          setTimeout(() => navigate("/"), 3000);
+          const res = response.data;
+          setTimeout(() => navigate(`/alert/visitorOrder/${res}`), 3000);
         })
         .catch(function (error) {
           toast.error("Đặt hàng thất bại");

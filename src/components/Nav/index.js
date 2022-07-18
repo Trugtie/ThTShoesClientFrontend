@@ -149,6 +149,7 @@ export default function Nav() {
               <LinkTab label="SỰ KIỆN" component={Link} to="/event" />
               <LinkTab label="LIÊN HỆ" component={Link} to="/contact" />
               <LinkTab label="ABOUT US" component={Link} to="/about" />
+              <LinkTab label="TRA CỨU" component={Link} to="/researchorder" />
             </Tabs>
           </div>
         </nav>
