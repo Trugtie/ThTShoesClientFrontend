@@ -7,6 +7,8 @@ import Modal from "@mui/material/Modal";
 import Select from "@mui/material/Select";
 import Typography from "@mui/material/Typography";
 
+import LoadingSpiner from "../../components/LoadingSpiner";
+
 import toast, { Toaster } from "react-hot-toast";
 
 import { useEffect, useState } from "react";
@@ -273,7 +275,7 @@ function returnCompomentShoes(
   handleChangeColor
 ) {
   return shoes === null ? (
-    "Loading"
+    <LoadingSpiner />
   ) : (
     <div className="container detailItem-container">
       <div className="detail-img">
