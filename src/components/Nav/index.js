@@ -7,6 +7,7 @@ import ListItemText from "@mui/material/ListItemText";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.svg";
@@ -19,7 +20,9 @@ function LinkTab(props) {
 }
 
 export default function Nav() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
   let user = useSelector(userSelector);
 
   const cart = useSelector(cartSelector);
@@ -32,6 +35,7 @@ export default function Nav() {
 
   const handleLogout = (e) => {
     dispatch(userSlice.actions.logout());
+    navigate("/");
   };
 
   return (
