@@ -5,6 +5,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import * as yup from "yup";
 import { updateInfo } from "../../Nav/userSlice";
+import { toggleBlur } from "../../BlurLoading";
 
 export default function PersonForm() {
   const dispatch = useDispatch();
@@ -32,12 +33,15 @@ export default function PersonForm() {
   });
 
   const onSubmit = (data) => {
+    toggleBlur();
     dispatch(updateInfo(data))
       .unwrap()
       .then((originalPromiseResult) => {
+        toggleBlur();
         toast.success("Cập nhật thành công !");
       })
       .catch((rejectedValueOrSerializedError) => {
+        toggleBlur();
         toast.error("Cập nhật thất bại !");
       });
   };

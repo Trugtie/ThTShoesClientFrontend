@@ -4,6 +4,7 @@ import DetailHistoryPage from "../DetailHistoryPage";
 import { useState, useRef } from "react";
 import userApi from "../../api/userApi";
 import toast, { Toaster } from "react-hot-toast";
+import { toggleBlur } from "../../components/BlurLoading";
 
 export default function ResearchOrderPage() {
   const [id, setId] = useState("");
@@ -14,14 +15,17 @@ export default function ResearchOrderPage() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    toggleBlur();
     if (id.length > 0) {
       const res = userApi.getHistoryNoneToken(id);
       res
         .then(function (response) {
+          toggleBlur();
           setData(response.data.donHang);
           toast.success("Tra cứu thành công !");
         })
         .catch(function (error) {
+          toggleBlur();
           toast.error("Tra cứu thất bại !");
         });
     }

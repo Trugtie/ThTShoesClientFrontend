@@ -2,6 +2,7 @@ import { Grid, TextField, Button } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import toast, { Toaster } from "react-hot-toast";
+import { toggleBlur } from "../../BlurLoading";
 import * as yup from "yup";
 import userApi from "../../../api/userApi";
 
@@ -39,12 +40,15 @@ export default function AccountForm() {
   });
 
   const onSubmit = (data) => {
+    toggleBlur();
     userApi
       .changePass(data)
       .then(function (response) {
+        toggleBlur();
         toast.success("Đổi mật khẩu thành công !");
       })
       .catch(function (error) {
+        toggleBlur();
         toast.error("Đổi mật khẩu thất bại !");
         reset();
       });

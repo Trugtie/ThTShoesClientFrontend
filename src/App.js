@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
+import BlurLoading from "./components/BlurLoading";
 import Footer from "./components/Footer";
 import LoadingSpinner from "./components/LoadingSpiner";
 import Nav from "./components/Nav";
@@ -38,7 +39,6 @@ import ResearchOrderPage from "./pages/ResearchOrderPage";
 function App() {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     dispatch(fetchShoes());
     dispatch(fetchAllShoesTypes());
@@ -58,6 +58,7 @@ function App() {
         <LoadingSpinner />
       ) : (
         <>
+          <BlurLoading />
           <Nav />
           <Routes>
             <Route path="/" element={<HomePage />} />

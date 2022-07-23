@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import payApi from "../../api/payApi";
+import { toggleBlur } from "../../components/BlurLoading";
 import PayForm from "../../components/Form/PayForm";
 import {
   cartSelector,
@@ -82,6 +83,7 @@ export default function PayPage() {
   });
 
   const onSubmit = (data) => {
+    toggleBlur();
     const giays = cartList.filter((item) => {
       return item.category !== "Phụ kiện";
     });
@@ -118,10 +120,18 @@ export default function PayPage() {
         .then(function (response) {
           toast.success("Đặt hàng thành công");
           dispatch(cartSlice.actions.resetCart());
-          setTimeout(() => navigate("/"), 3000);
+          setTimeout(() => {
+            toggleBlur();
+            navigate("/");
+          }, 3000);
         })
         .catch(function (error) {
-          toast.error("Đặt hàng thất bại");
+          toast.error(
+            `Đặt hàng thất bại ! \n Sản phẩm vượt quá số lượng: \n ${error.response.data}`
+          );
+          setTimeout(() => {
+            toggleBlur();
+          }, 3000);
         });
     } else {
       const payload = {
@@ -142,18 +152,28 @@ export default function PayPage() {
           toast.success("Đặt hàng thành công");
           dispatch(cartSlice.actions.resetCart());
           const res = response.data;
-          setTimeout(() => navigate(`/alert/visitorOrder/${res}`), 3000);
+          setTimeout(() => {
+            toggleBlur();
+            navigate(`/alert/visitorOrder/${res}`);
+          }, 3000);
         })
         .catch(function (error) {
-          toast.error("Đặt hàng thất bại");
+          toast.error(
+            `Đặt hàng thất bại ! \n Sản phẩm vượt quá số lượng: \n ${error.response.data}`
+          );
+          setTimeout(() => {
+            toggleBlur();
+          }, 3000);
         });
     }
   };
   const onSubmitVoucher = (data) => {
+    toggleBlur();
     if (Object.keys(user).length > 0) {
       const results = payApi.getVoucher(data.voucher);
       results
         .then(function (response) {
+          toggleBlur();
           const data = response.data;
           const dateEnd = new Date(data.ngaykt);
           const dateNow = new Date();
@@ -169,10 +189,12 @@ export default function PayPage() {
           }
         })
         .catch(function (error) {
+          toggleBlur();
           reset2();
           toast.error("Mã KM không hợp lệ !");
         });
     } else {
+      toggleBlur();
       reset2();
       toast.error("Bạn chưa đăng nhập !");
     }
@@ -188,9 +210,10 @@ export default function PayPage() {
           className: "",
           duration: 3000,
           style: {
+            textAlign:"left",
             color: "#fff",
             width: "250px",
-            height: "50px",
+            height: "auto",
             fontSize: "1.1rem",
           },
           // Default options for specific types

@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import userApi from "../../api/userApi";
+import { toggleBlur } from "../../components/BlurLoading";
 import "./style.scss";
 
 export default function RegisterPage() {
@@ -60,15 +61,17 @@ export default function RegisterPage() {
   });
 
   const onSubmit = (data) => {
+    toggleBlur();
     const message = userApi.register(data);
     message
       .then(function (response) {
         console.log("Success: ", response.data);
+        toggleBlur();
         navigate("/alert/register");
       })
       .catch(function (error) {
+        toggleBlur();
         setError(error.response.data);
-        reset();
       });
   };
 
