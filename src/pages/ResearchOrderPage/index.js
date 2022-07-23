@@ -22,13 +22,14 @@ export default function ResearchOrderPage() {
           toggleBlur();
           setData(response.data.donHang);
           toast.success("Tra cứu thành công !");
+          setId("");
         })
         .catch(function (error) {
           toggleBlur();
-          toast.error("Tra cứu thất bại !");
+          console.log(error);
+          toast.error(error.response.data);
         });
     }
-    setId("");
     inputElement.current.focus();
   };
   return (
