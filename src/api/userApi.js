@@ -1,5 +1,6 @@
 import { API_URL, authAxios } from "./constants";
 import axios from "axios";
+import { toggleBlur } from "../components/BlurLoading";
 
 const userApi = {
   login: (payload) => {
@@ -35,8 +36,9 @@ const userApi = {
     return data;
   },
   getHistoryNoneToken: async (payload) => {
+    toggleBlur();
     const url = `/khachhang/dathang/khachvanglai/lichsudathang/${payload}`;
-    return  await axios.get(`${API_URL}${url}`);
+    return await axios.get(`${API_URL}${url}`);
   },
 };
 

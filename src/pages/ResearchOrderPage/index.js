@@ -15,7 +15,6 @@ export default function ResearchOrderPage() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    toggleBlur();
     if (id.length > 0) {
       const res = userApi.getHistoryNoneToken(id);
       res
