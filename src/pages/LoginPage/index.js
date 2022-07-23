@@ -12,6 +12,7 @@ import FacebookBtn from "../../assets/faceboodBtn.svg";
 import GoogleBtn from "../../assets/googleBtn.svg";
 import { getMyInfo, login } from "../../components/Nav/userSlice";
 import { userStatusSelector } from "../../store/selectors";
+import { toggleBlur } from "../../components/BlurLoading";
 import "./login.scss";
 
 export default function LoginPage() {
@@ -43,12 +44,17 @@ export default function LoginPage() {
   });
 
   const onSubmit = async (data) => {
+    toggleBlur();
     const signInResult = await dispatch(login(data));
     const userID = await getID();
     const getMeResult = await dispatch(getMyInfo(userID))
       .unwrap()
       .then((originalPromiseResult) => {
+        toggleBlur();
         navigate("/");
+      })
+      .catch((rejectedValueOrSerializedError) => {
+        toggleBlur();
       });
   };
 
