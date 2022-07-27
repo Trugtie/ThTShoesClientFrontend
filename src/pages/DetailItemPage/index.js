@@ -7,6 +7,8 @@ import Modal from "@mui/material/Modal";
 import Select from "@mui/material/Select";
 import Typography from "@mui/material/Typography";
 
+import Comment from "../../components/Comment";
+
 import LoadingSpiner from "../../components/LoadingSpiner";
 
 import toast, { Toaster } from "react-hot-toast";
@@ -170,6 +172,12 @@ export default function DetailItemPage() {
             )
           : returnCompomentAccessory(accessory, handleGoback, handleAddCart)}
       </section>
+      <section className="comment-section">
+        {shoes && <Comment data={shoes.binhluans} id={shoes.magiay} />}
+        {accessory && (
+          <Comment data={accessory.binhluans} id={accessory.mapk} />
+        )}
+      </section>
     </div>
   );
 }
@@ -185,7 +193,7 @@ function returnCompomentToaster() {
         duration: 3000,
         style: {
           color: "#fff",
-          width: "300px",
+          width: "250px",
           height: "50px",
           fontSize: "1.1rem",
         },
@@ -194,6 +202,12 @@ function returnCompomentToaster() {
           duration: 3000,
           style: {
             background: "rgb(56, 142, 60)",
+          },
+        },
+        error: {
+          duration: 3000,
+          style: {
+            background: "rgb(211, 47, 47)",
           },
         },
       }}

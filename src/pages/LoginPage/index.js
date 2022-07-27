@@ -45,7 +45,12 @@ export default function LoginPage() {
 
   const onSubmit = async (data) => {
     toggleBlur();
-    const signInResult = await dispatch(login(data));
+    const signInResult = await dispatch(login(data))
+      .unwrap()
+      .then((originalPromiseResult) => {})
+      .catch((rejectedValueOrSerializedError) => {
+        toggleBlur();
+      });
     const userID = await getID();
     const getMeResult = await dispatch(getMyInfo(userID))
       .unwrap()
