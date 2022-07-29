@@ -30,6 +30,10 @@ const userApi = {
     const url = "/doimatkhau";
     return authAxios.put(`${API_URL}${url}`, payload);
   },
+  huyDon: (payload) => {
+    const url = `/khachhang/dathang/huydonhang/${payload}`;
+    return authAxios.put(`${API_URL}${url}`);
+  },
   getHistory: async () => {
     const url = `/khachhang/dathang/lichsudathang`;
     const { data } = await authAxios.get(`${API_URL}${url}`);

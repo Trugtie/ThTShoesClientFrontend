@@ -6,12 +6,17 @@ import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import { Button } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { historyDetailSelector } from "../../store/selectors";
+import userApi from "../../api/userApi";
 import "./style.scss";
-
+import toast, { Toaster } from "react-hot-toast";
+import { toggleBlur } from "../../components/BlurLoading";
+import { useNavigate } from "react-router-dom";
 export default function DetailHistoryPage({ history }) {
+  const navigate = useNavigate();
   const { id } = useParams();
   let data = useSelector(historyDetailSelector(id));
   if (history !== undefined) {
@@ -55,6 +60,23 @@ export default function DetailHistoryPage({ history }) {
       ? "Đã duyệt"
       : "Từ chối";
 
+  const handleHuyDon = () => {
+    toggleBlur();
+    const res = userApi.huyDon(id);
+    res
+      .then(function (res) {
+        toast.success("Đã hủy đơn hàng!");
+        setTimeout(() => {
+          toggleBlur();
+          navigate("/history");
+        }, 3000);
+      })
+      .catch(function (err) {
+        toast.error("Hủy đơn hàng thất bại!");
+        toggleBlur();
+      });
+  };
+
   return (
     <div className="history-container">
       <section className="history-section">
@@ -88,6 +110,24 @@ export default function DetailHistoryPage({ history }) {
             <div className="history-text">
               <span className="history-text--bold">Mã khuyến mãi:</span> {makm}
             </div>
+            {data.tinhtrang === "CHODUYET" && (
+              <div className="button-huy">
+                <Button
+                  onClick={handleHuyDon}
+                  variant="contained"
+                  sx={{
+                    width: "100%",
+                    background: "red",
+                    transition: "all .3s",
+                    "&:hover": {
+                      background: "black",
+                    },
+                  }}
+                >
+                  Hủy đơn
+                </Button>
+              </div>
+            )}
           </div>
           <h1 className="history-title">Chi tiết đơn hàng</h1>
           <hr className="history-divider" />
@@ -167,6 +207,34 @@ export default function DetailHistoryPage({ history }) {
           </div>
         </div>
       </section>
+      <Toaster
+        position="bottom-right"
+        reverseOrder={false}
+        toastOptions={{
+          // Define default options
+          className: "",
+          duration: 3000,
+          style: {
+            color: "#fff",
+            width: "250px",
+            height: "50px",
+            fontSize: "1.1rem",
+          },
+          // Default options for specific types
+          success: {
+            duration: 3000,
+            style: {
+              background: "rgb(56, 142, 60)",
+            },
+          },
+          error: {
+            duration: 3000,
+            style: {
+              background: "rgb(211, 47, 47)",
+            },
+          },
+        }}
+      />
     </div>
   );
 }
