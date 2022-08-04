@@ -33,7 +33,6 @@ import "./detail.scss";
 export default function DetailItemPage() {
   let navigate = useNavigate();
   const dispatch = useDispatch();
-
   let { id, pre } = useParams();
 
   const [shoes, setShoes] = useState(null);

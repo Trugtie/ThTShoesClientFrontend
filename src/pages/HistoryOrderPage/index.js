@@ -60,7 +60,9 @@ export default function HistoryOrderPage() {
         whiteWords="CỦA BẠN"
         height="227px"
       />
-      {isLoading ? (<LoadingSpinner/>):(
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
         <section className="cart-section">
           <div className="container">
             <TableContainer component={Paper}>
@@ -92,6 +94,8 @@ export default function HistoryOrderPage() {
                         ? "Chờ duyệt"
                         : row.tinhtrang === "DADUYET"
                         ? "Đã duyệt"
+                        : row.tinhtrang === "HUY"
+                        ? "Đã hủy"
                         : "Từ chối";
                     return (
                       <StyledTableRow key={row.madon}>

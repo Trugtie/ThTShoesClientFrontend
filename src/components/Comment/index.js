@@ -127,7 +127,7 @@ export default function Comment({ data, id }) {
         {comments.map((item) => {
           return (
             <>
-              <Grid container wrap="nowrap" spacing={2}>
+              <Grid container wrap="nowrap" spacing={2} key={item.mabl}>
                 <Grid justifyContent="left" item xs zeroMinWidth>
                   <h4 className="user-comment-name">
                     {item.khachHangDomain.ho + " " + item.khachHangDomain.ten}
@@ -138,6 +138,30 @@ export default function Comment({ data, id }) {
                   </p>
                 </Grid>
               </Grid>
+              {item.binhluans.map((reply) => {
+                return (
+                  <Grid
+                    container
+                    wrap="nowrap"
+                    spacing={2}
+                    key={reply.mabl}
+                    sx={{ textIndent: ".8rem", marginTop: ".5rem" }}
+                  >
+                    <Grid justifyContent="left" item xs zeroMinWidth>
+                      <h4 className="user-comment-name">
+                        {"Nhân viên " +
+                          reply.nhanvien.ho +
+                          " " +
+                          reply.nhanvien.ten}
+                      </h4>
+                      <p className="user-comment-description">{reply.mota}</p>
+                      <p className="comment-relative-time">
+                        {moment(reply.thoigian).fromNow()}
+                      </p>
+                    </Grid>
+                  </Grid>
+                );
+              })}
               <Divider variant="fullWidth" style={{ margin: "30px 0" }} />
             </>
           );
