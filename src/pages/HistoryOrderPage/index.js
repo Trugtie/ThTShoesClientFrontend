@@ -103,7 +103,7 @@ export default function HistoryOrderPage() {
                           {row.madon}
                         </StyledTableCell>
                         <StyledTableCell align="center">
-                          {dateCreate.getDate()}/{dateCreate.getMonth()}/
+                          {dateCreate.getDate()}/{dateCreate.getMonth() + 1}/
                           {dateCreate.getFullYear()}
                         </StyledTableCell>
                         <StyledTableCell align="center">

@@ -25,7 +25,7 @@ export default function EventItem({id, description, cost, img, startDate, endDat
           backgroundImage: `url(${img})`,
         }}
       >
-        <div className="event-range">{start.getDate()}/{start.getMonth()} -<br/> {end.getDate()}/{end.getMonth()}</div>
+        <div className="event-range">{start.getDate()}/{start.getMonth()+1} -<br/> {end.getDate()}/{end.getMonth()+1}</div>
       </div>
       <div className="item-description">
         <div className="item-title item-title--event">{title}</div>

@@ -53,7 +53,7 @@
 
 .choose__size {
   flex-grow: 2;
-  max-width:110px;
+  max-width: 110px;
   margin-right: 1rem;
 }
 
@@ -119,4 +119,34 @@
 .detail-info__btn {
   display: flex;
   justify-content: space-between;
+}
+
+.modal-guide-img {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 700px;
+}
+.guide-cal {
+  text-align: center;
+  margin: 1rem 0rem;
+}
+
+.modal-link {
+  background-color: black;
+  justify-content: center;
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  margin: 1rem 0rem;
+  padding: .8rem;
+  transition: all 0.3s;
+  &:hover {
+    background-color: rgb(34, 34, 34);
+  }
+}
+.guide-flex {
+  display: flex;
+  justify-content: center;
 }

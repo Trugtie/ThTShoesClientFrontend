@@ -30,12 +30,14 @@ export default function RegisterPage() {
         password: yup
           .string()
           .required("Không được bỏ trống")
-          .min(6, "Tối thiểu 6 ký tự")
+          .matches(
+            /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+            "Tối thiểu 8 ký tự, ít nhất một ký tự hoa, một ký tự thường, một số và một ký tự đặc biệt"
+          )
           .max(18, "Tối đa 18 ký tự"),
         confirmPassword: yup
           .string()
           .required("Không được bỏ trống")
-          .min(6, "Tối thiểu 6 ký tự")
           .max(18, "Tối đa 18 ký tự")
           .oneOf([yup.ref("password"), null], "Mật khẩu không khớp"),
       }),

@@ -30,6 +30,12 @@ import GreenCheckIcon from "../../assets/checked.svg";
 import CombIcon from "../../assets/comb.svg";
 import "./detail.scss";
 
+import StepTwo from "../../assets/steptwo.jpg";
+import StepThree from "../../assets/stepthree.jpg";
+import StepFour from "../../assets/stepfourjpg.jpg";
+import MaleSize from "../../assets/malesize.jpg";
+import FemaleSize from "../../assets/femailsize.jpg";
+
 export default function DetailItemPage() {
   let navigate = useNavigate();
   const dispatch = useDispatch();
@@ -38,7 +44,7 @@ export default function DetailItemPage() {
   const [shoes, setShoes] = useState(null);
   const [sizeId, setSizeId] = useState("");
   const [size, setSize] = useState("");
-  const [listSize, setListSize] = useState([]);
+  // const [listSize, setListSize] = useState([]);
   const [listColorOfSize, setListColorOfSize] = useState([]);
   const [color, setColor] = useState("");
   const [colorId, setColorId] = useState("");
@@ -51,7 +57,7 @@ export default function DetailItemPage() {
         const shoes = await shoesApi.getById(id);
         await setShoes(shoes);
 
-        setListSize(shoes.sizes);
+        // setListSize(shoes.sizes);
         setSize(shoes.sizes[0]);
         setSizeId(shoes.sizes[0].masize);
 
@@ -102,39 +108,27 @@ export default function DetailItemPage() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleChangeSize = (event) => {
-    const masize = event.target.value;
+  const handleChangeSize = (e) => {
+    const masize = e.target.value;
     setSizeId(masize);
-    listSize.map((value) => {
-      if (value.masize === masize) {
-        setSize(value);
-        return;
-      }
+    const size = shoes.sizes.find((item) => {
+      return item.masize === masize;
     });
-
-    getListColorOfSize(masize);
+    setSize(size);
+    setColor(size.mausacs[0]);
+    setColorId(size.mausacs[0].mamau);
+    setSoLuongGiayOfColor(size.mausacs[0].soluong);
+    setListColorOfSize(size.mausacs);
   };
 
-  const handleChangeColor = (event) => {
-    const maColor = event.target.value;
-    setColorId(maColor);
-    listColorOfSize.map((value) => {
-      if (maColor === value.mamau) {
-        console.log(value);
-        setColor(value);
-        setSoLuongGiayOfColor(value.soluong);
-        return;
-      }
+  const handleChangeColor = (e) => {
+    const colorId = e.target.value;
+    setColorId(colorId);
+    const color = listColorOfSize.find((item) => {
+      return item.mamau === colorId;
     });
-  };
-
-  const getListColorOfSize = (idSize) => {
-    listSize.map((value) => {
-      if (value.masize === idSize) {
-        setListColorOfSize(value.mausacs);
-        return;
-      }
-    });
+    setColor(color);
+    setSoLuongGiayOfColor(color.soluong);
   };
 
   const style = {
@@ -142,11 +136,13 @@ export default function DetailItemPage() {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 400,
     bgcolor: "background.paper",
     border: "2px solid #000",
     boxShadow: 24,
     p: 4,
+    width: "70vw",
+    height: "80vh",
+    overflowY: "auto",
   };
 
   return (
@@ -407,12 +403,121 @@ function returnCompomentShoes(
             aria-describedby="modal-modal-description"
           >
             <Box sx={style}>
+              <Typography
+                id="modal-modal-title"
+                variant="h4"
+                component="h2"
+                align="center"
+                sx={{ marginBottom: "1rem" }}
+              >
+                Hướng dẫn chọn size giày chuẩn
+              </Typography>
               <Typography id="modal-modal-title" variant="h6" component="h2">
-                Text in a modal
+                Bước 1. Chuẩn bị những vật dụng sau để đo kích thước chân:
               </Typography>
-              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+              <Typography
+                id="modal-modal-description"
+                sx={{ padding: "1rem 2rem" }}
+              >
+                <ul>
+                  <li>Một tờ giấy (to hơn chân)</li>
+                  <li>Một cây thước</li>
+                  <li>Một cây bút (viết)</li>
+                  <li>
+                    Mang tất/đi vớ nào mà bạn định sẽ đi cùng với đôi giày mình
+                    cần mua
+                  </li>
+                </ul>
               </Typography>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                Bước 2. Các bước tiến hành đo size chân:
+              </Typography>
+              <img src={StepTwo} className="modal-guide-img" />
+              <Typography
+                id="modal-modal-description"
+                sx={{ padding: "1rem 2rem" }}
+              >
+                Sau khi đi tất, bạn giậm chân thật mạnh lên tờ giấy và giữ thật
+                chắc để chân khỏi dịch chuyển khiến kích thước sau khi đo sẽ bị
+                sai. Sau đó dùng bút vẽ theo khung bàn chân của bạn lên tờ giấy.
+              </Typography>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                Bước 3. Đo chiều dài cho chân:
+              </Typography>
+              <img src={StepThree} className="modal-guide-img" />
+              <Typography
+                id="modal-modal-description"
+                sx={{ padding: "1rem 2rem" }}
+              >
+                Đánh dấu 4 điểm bao gồm 2 điểm đầu ngón chân và 2 điểm cuối của
+                gót chân bằng bút. Sau đó dùng thước kẻ để đo lại chiều dài của
+                hai điểm này.
+              </Typography>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                Bước 4. Đo chiều rộng cho bàn chân:
+              </Typography>
+              <img src={StepFour} className="modal-guide-img" />
+              <Typography
+                id="modal-modal-description"
+                sx={{ padding: "1rem 2rem" }}
+              >
+                Ngoài chiều dài, thì bạn cần đo chiều rộng của bàn chân. Bạn chỉ
+                cần dùng thước hay sợi dây đo sau đó chọn vị trí gần đầu mũi
+                chân có bề ngang hoặc mu bàn chân dài nhất (bạn thấy chỗ nào là
+                rộng nhất của chân thì lấy chỗ đó) để tiến hành đo, khi đo bạn
+                nên ở tư thế ngồi hoặc đứng thẳng 2 chân.
+              </Typography>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                Bước 5. Tính kết quả để chọn size giày:
+              </Typography>
+              <Typography
+                id="modal-modal-description"
+                sx={{ padding: "1rem 2rem" }}
+              >
+                Sau khi đo xong bàn chân, bạn hãy lấy chiều dài nhất của chân và
+                chiều rộng nhất và tính theo công thức sau:{" "}
+                <h3 className="guide-cal">
+                  Cỡ giày = N = L (chiều dài bàn chân) + 1.5cm{" "}
+                </h3>
+                Sau khi có kết quả, bạn có thể dùng kết quả đó để đối chiếu theo
+                bảng quy đổi size giày dưới đây. Chắc chắn với cách này, bạn sẽ
+                lựa chọn được đôi giày phù hợp nhất với kích thước chân của
+                mình. Ví dụ: Bạn đo được chiều dài của bàn chân mình là 22.5cm
+                thì cỡ giày của bạn sẽ cộng thêm 1.5cm nữa kết quả là 24cm. Sau
+                đó các bạn so sánh với cột cm ở bảng quy đổi size giày bên dưới
+                sẽ tìm ra được cỡ giày của bạn là 38 - 39 đối với size Việt Nam,
+                còn size UK là 6, và size US là 8.
+              </Typography>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                Bảng quy đổi size giày cho nam
+              </Typography>
+              <img src={MaleSize} className="modal-guide-img" />
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                Bảng quy đổi size giày cho nữ
+              </Typography>
+              <img src={FemaleSize} className="modal-guide-img" />
+              <div className="guide-flex">
+                <a
+                  className="modal-link"
+                  href="https://quantrimang.com/cuoc-song/huong-dan-chon-size-giay-chuan-voi-moi-doi-chan-165577#:~:text=C%E1%BB%A1%20gi%C3%A0y%20%3D%20N%20%3D%20L%20(,d%C3%A0i%20b%C3%A0n%20ch%C3%A2n)%20%2B%201.5cm&text=Ch%E1%BA%AFc%20ch%E1%BA%AFn%20v%E1%BB%9Bi%20c%C3%A1ch%20n%C3%A0y,n%E1%BB%AFa%20k%E1%BA%BFt%20qu%E1%BA%A3%20l%C3%A0%2024cm."
+                >
+                  Tham khảo thêm
+                </a>
+              </div>
+              <Button
+                fullWidth
+                onClick={handleClose}
+                variant="contained"
+                sx={{
+                  backgroundColor: "var(--button-second-color)",
+                  "&:hover": {
+                    backgroundColor: "var(--button-first-color)",
+                  },
+                  flexBasis: "400px",
+                }}
+              >
+                Thoát
+              </Button>
             </Box>
           </Modal>
         </div>

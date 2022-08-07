@@ -44,6 +44,11 @@ const userApi = {
     const url = `/khachhang/dathang/khachvanglai/lichsudathang/${payload}`;
     return await axios.get(`${API_URL}${url}`);
   },
+  resetPass: async (payload) => {
+    const url = `/quenmatkhau/${payload}`;
+    const { data } = await authAxios.get(`${API_URL}${url}`);
+    return data;
+  },
 };
 
 export default userApi;

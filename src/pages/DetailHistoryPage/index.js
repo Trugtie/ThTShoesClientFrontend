@@ -90,7 +90,7 @@ export default function DetailHistoryPage({ history }) {
             </div>
             <div className="history-text">
               <span className="history-text--bold">Ngày tạo:</span>
-              {dateCreate.getDate()}/{dateCreate.getMonth()}/
+              {dateCreate.getDate()}/{dateCreate.getMonth() + 1}/
               {dateCreate.getFullYear()}
             </div>
             <div className="history-text">

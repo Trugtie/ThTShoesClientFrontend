@@ -14,17 +14,22 @@ export default function AccountForm() {
       oldPassowrd: yup
         .string()
         .required("Không được bỏ trống")
-        .min(6, "Tối thiểu 6 ký tự")
-        .max(18, "Tối đa 18 ký tự"),
+        .max(18, "Tối đa 18 ký tự")
+        .matches(
+          /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+          "Tối thiểu 8 ký tự, ít nhất một ký tự hoa, một ký tự thường, một số và một ký tự đặc biệt"
+        ),
       newPassword: yup
         .string()
         .required("Không được bỏ trống")
-        .min(6, "Tối thiểu 6 ký tự")
-        .max(18, "Tối đa 18 ký tự"),
+        .max(18, "Tối đa 18 ký tự")
+        .matches(
+          /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+          "Tối thiểu 8 ký tự, ít nhất một ký tự hoa, một ký tự thường, một số và một ký tự đặc biệt"
+        ),
       confirmPassword: yup
         .string()
         .required("Không được bỏ trống")
-        .min(6, "Tối thiểu 6 ký tự")
         .max(18, "Tối đa 18 ký tự")
         .oneOf([yup.ref("newPassword"), null], "Mật khẩu không khớp"),
     })
@@ -50,7 +55,6 @@ export default function AccountForm() {
       .catch(function (error) {
         toggleBlur();
         toast.error("Đổi mật khẩu thất bại !");
-        reset();
       });
   };
 

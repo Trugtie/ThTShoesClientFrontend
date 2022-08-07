@@ -31,12 +31,12 @@ export default function DetailEventPage() {
             <p className="event-description">{data.mota}</p>
             <div className="event-time">
               <span className="time-bold">Áp dụng từ ngày: </span>
-              {startDate.getDate()}-{startDate.getMonth()}-
+              {startDate.getDate()}-{startDate.getMonth()+1}-
               {startDate.getFullYear()}
             </div>
             <div className="event-time">
               <span className="time-bold">Đến ngày: </span> {endDate.getDate()}-
-              {endDate.getMonth()}-{endDate.getFullYear()}
+              {endDate.getMonth()+1}-{endDate.getFullYear()}
             </div>
             <hr />
             <div className="event-code">
