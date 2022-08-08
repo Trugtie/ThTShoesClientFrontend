@@ -14,12 +14,14 @@ export const userSelector = (state) => state.user.current;
 export const cartSelector = (state) => state.cart.list;
 export const totalCartSelector = (state) => state.cart.totalCart;
 export const eventSelector = (state) => state.event.list;
+
 export const giayLatestSelector = (state) =>
   state.shoesList.shoesListHomepage.giayLatest;
 export const giayBestSellsSelector = (state) =>
   state.shoesList.shoesListHomepage.giayBestSells;
 export const phuKienLatestSelector = (state) =>
   state.shoesList.shoesListHomepage.phuKienLatest;
+
 export const shoesDetailSelector = (id) => {
   return (state) =>
     state.shoesList.shoesList.giays.find((shoes) => shoes.magiay === id);
@@ -34,6 +36,7 @@ export const eventDetailSelector = (id) => {
 export const historyDetailSelector = (id) => {
   return (state) => state.user.history.find((history) => history.madon === id);
 };
+
 
 export const shoesListRemainingSelector = createSelector(
   shoesListSelector,

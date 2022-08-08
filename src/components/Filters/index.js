@@ -10,19 +10,32 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   shoesTypesSelector,
   accessoriesTypesSelector,
+  shoesListSelector,
+  accessoriesSelector,
 } from "../../store/selectors";
 import "./filters.scss";
 import filtersSlice from "./filtersSlice";
 
 export default function Filters({ categorySelect }) {
   const shoesTypes = useSelector(shoesTypesSelector);
+  const shoesList = useSelector(shoesListSelector);
+  const accessoriesList = useSelector(accessoriesSelector);
   const accessoriesTypes = useSelector(accessoriesTypesSelector);
   const currentLocate = useLocation();
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const [category, setCategory] = useState(categorySelect);
   const [types, setTypes] = useState([]);
-  const [price, setPrice] = useState([0, 6000000]);
+
+  //Set Max Price
+  const maxPriceShoes = findMaxPrice(shoesList);
+  const maxPriceAccessories = findMaxPrice(accessoriesList);
+  const maxPrice =
+    maxPriceShoes > maxPriceAccessories ? maxPriceShoes : maxPriceAccessories;
+
+  const [price, setPrice] = useState([0, maxPrice]);
+  dispatch(filtersSlice.actions.priceFilterChange(price));
+
   useLayoutEffect(() => {
     setCategory(categorySelect);
     dispatch(filtersSlice.actions.categoryFilterChange(categorySelect));
@@ -106,22 +119,22 @@ export default function Filters({ categorySelect }) {
             </>
           ) : (
             <>
-            {accessoriesTypes.map((type) => (
-              <FormControlLabel
-                key={type.maLoaiPhuKien}
-                labelPlacement="start"
-                control={
-                  <Checkbox
-                    value={type.tenLoaiPhuKien}
-                    checked={types.includes(type.tenLoaiPhuKien)}
-                    onChange={handleChangeTypes}
-                  />
-                }
-                label={type.tenLoaiPhuKien}
-                sx={{ justifyContent: "space-between", margin: "0" }}
-              />
-            ))}
-          </>
+              {accessoriesTypes.map((type) => (
+                <FormControlLabel
+                  key={type.maLoaiPhuKien}
+                  labelPlacement="start"
+                  control={
+                    <Checkbox
+                      value={type.tenLoaiPhuKien}
+                      checked={types.includes(type.tenLoaiPhuKien)}
+                      onChange={handleChangeTypes}
+                    />
+                  }
+                  label={type.tenLoaiPhuKien}
+                  sx={{ justifyContent: "space-between", margin: "0" }}
+                />
+              ))}
+            </>
           )}
         </FormGroup>
       </div>
@@ -141,7 +154,7 @@ export default function Filters({ categorySelect }) {
         <Slider
           value={price}
           min={0}
-          max={6000000}
+          max={maxPrice}
           onChange={handlePrice}
           valueLabelDisplay="off"
           sx={{
@@ -153,4 +166,15 @@ export default function Filters({ categorySelect }) {
       </div>
     </section>
   );
+}
+
+function findMaxPrice(arr) {
+  let len = arr.length;
+  let max = -Infinity;
+  while (len--) {
+    if (arr[len].gia > max) {
+      max = arr[len].gia;
+    }
+  }
+  return max;
 }

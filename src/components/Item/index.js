@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import cartSlice from "../../pages/CartPage/cartSlice";
 import { useDispatch } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
+import { motion } from "framer-motion";
 
 export default function Item({ id, name, price = 0, img, category }) {
   const dispatch = useDispatch();
@@ -29,11 +30,13 @@ export default function Item({ id, name, price = 0, img, category }) {
   };
 
   return (
-    <div
+    <motion.div
+      layout
+      animate={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, scale: 0 }}
+      exit={{ opacity: 0, scale: 0 }}
+      whileHover={{ scale: 1.05 }}
       className="item-container"
-      data-aos="zoom-in"
-      data-aos-duration="500"
-      data-aos-delay="100"
     >
       <Toaster
         position="bottom-right"
@@ -102,6 +105,6 @@ export default function Item({ id, name, price = 0, img, category }) {
           </Button>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 }

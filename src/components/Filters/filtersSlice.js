@@ -6,7 +6,7 @@ export default createSlice({
     search: "",
     category: "",
     type: [],
-    price: [0, 6000000],
+    price: [],
   },
   reducers: {
     searchFilterChange: (state, action) => {
