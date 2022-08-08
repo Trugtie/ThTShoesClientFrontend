@@ -83,7 +83,12 @@ export default function Comment({ data, id }) {
   };
 
   return (
-    <div className="container comment-container">
+    <div
+      className="container comment-container"
+      data-aos="fade-up"
+      data-aos-duration="800"
+      data-aos-delay="500"
+    >
       <h1 className="comment-title">Bình luận</h1>
       <div className="comment-input">
         <TextField

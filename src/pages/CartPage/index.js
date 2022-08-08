@@ -38,7 +38,12 @@ export default function CartPage() {
     <div className="cart-container">
       <Divider yellowWords="GIỎ HÀNG " whiteWords="CỦA BẠN" height="227px" />
       <section className="cart-section">
-        <div className="container">
+        <div
+          className="container"
+          data-aos="zoom-out"
+          data-aos-duration="800"
+          data-aos-delay="200"
+        >
           <TableContainer component={Paper}>
             <Table
               sx={{ minWidth: 650 }}

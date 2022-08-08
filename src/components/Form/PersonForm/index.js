@@ -47,7 +47,12 @@ export default function PersonForm() {
   };
 
   return (
-    <div className="pay-info pay-info--person">
+    <div
+      className="pay-info pay-info--person"
+      data-aos="fade"
+      data-aos-duration="800"
+      data-aos-delay="100"
+    >
       <h1 className="pay-title pay--left">THÔNG TIN CÁ NHÂN</h1>
       <hr />
       <form onSubmit={handleSubmit(onSubmit)}>

@@ -62,7 +62,12 @@ export default function ResearchOrderPage() {
           },
         }}
       />
-      <section className="research-input-section">
+      <section
+        className="research-input-section"
+        data-aos="fade"
+        data-aos-duration="800"
+        data-aos-delay="100"
+      >
         <div className="container">
           <h1 className="reasearch-title">TRA CỨU ĐƠN HÀNG</h1>
           <hr />
@@ -89,7 +94,7 @@ export default function ResearchOrderPage() {
           </form>
         </div>
       </section>
-      {data && <DetailHistoryPage history={data} />}
+      {data && <DetailHistoryPage history={data} modkvl={1}/>}
     </div>
   );
 }

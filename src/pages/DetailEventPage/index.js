@@ -11,7 +11,12 @@ export default function DetailEventPage() {
   const endDate = new Date(data.ngaykt);
   const startDate = new Date(data.ngaybd);
   return (
-    <div className="detail-container">
+    <div
+      className="detail-container"
+      data-aos="fade"
+      data-aos-duration="800"
+      data-aos-delay="100"
+    >
       <section className="detail-section">
         <div className="container detailItem-container detailItem-container--event">
           <div
@@ -31,12 +36,12 @@ export default function DetailEventPage() {
             <p className="event-description">{data.mota}</p>
             <div className="event-time">
               <span className="time-bold">Áp dụng từ ngày: </span>
-              {startDate.getDate()}-{startDate.getMonth()+1}-
+              {startDate.getDate()}-{startDate.getMonth() + 1}-
               {startDate.getFullYear()}
             </div>
             <div className="event-time">
               <span className="time-bold">Đến ngày: </span> {endDate.getDate()}-
-              {endDate.getMonth()+1}-{endDate.getFullYear()}
+              {endDate.getMonth() + 1}-{endDate.getFullYear()}
             </div>
             <hr />
             <div className="event-code">

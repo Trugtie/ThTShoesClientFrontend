@@ -213,10 +213,20 @@ function returnCompomentToaster() {
 function returnCompomentAccessory(accessory, handleGoback, handleAddCart) {
   return (
     <div className="container detailItem-container">
-      <div className="detail-img">
+      <div
+        className="detail-img"
+        data-aos="fade-right"
+        data-aos-duration="800"
+        data-aos-delay="100"
+      >
         <ThumbGallery imgList={accessory.hinhs} urlImg={accessory.urlanh} />
       </div>
-      <div className="detail-info">
+      <div
+        className="detail-info"
+        data-aos="fade-left"
+        data-aos-duration="800"
+        data-aos-delay="100"
+      >
         <div className="detail-info__title">
           <h1 className="title__name">{accessory.tenpk}</h1>
           <h2 className="title__price">
@@ -287,10 +297,20 @@ function returnCompomentShoes(
     <LoadingSpiner />
   ) : (
     <div className="container detailItem-container">
-      <div className="detail-img">
+      <div
+        className="detail-img"
+        data-aos="fade-right"
+        data-aos-duration="800"
+        data-aos-delay="100"
+      >
         <ThumbGallery imgList={shoes.hinhs} urlImg={shoes.urlanh} />
       </div>
-      <div className="detail-info">
+      <div
+        className="detail-info"
+        data-aos="fade-left"
+        data-aos-duration="800"
+        data-aos-delay="100"
+      >
         <div className="detail-info__title">
           <h1 className="title__name">{shoes.tengiay}</h1>
           <h2 className="title__price">

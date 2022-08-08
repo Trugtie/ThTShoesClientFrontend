@@ -14,27 +14,59 @@ export default function ContactPage() {
     <div className="contactpage-container">
       <section className="contact-section">
         <div className="container contact-container">
-          <h1 className="contact-title">THÔNG TIN LIÊN HỆ</h1>
+          <h1
+            className="contact-title"
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-delay="100"
+          >
+            THÔNG TIN LIÊN HỆ
+          </h1>
           <div className="contact-flex">
             <div className="contact-content">
               <div className="info-wraper">
-                <div className="info-item">
+                <div
+                  className="info-item"
+                  data-aos="fade-right"
+                  data-aos-duration="1000"
+                  data-aos-delay="500"
+                >
                   <img src={LocateIcon} /> 125 Minh Phụng, Phường 2, Quận 11,
                   Tp.HCM
                 </div>
-                <div className="info-item">
+                <div
+                  className="info-item"
+                  data-aos="fade-right"
+                  data-aos-duration="1000"
+                  data-aos-delay="1000"
+                >
                   <img src={MailIcon} />
                   thtshoes@gmail.com
                 </div>
-                <div className="info-item">
+                <div
+                  className="info-item"
+                  data-aos="fade-right"
+                  data-aos-duration="1000"
+                  data-aos-delay="1500"
+                >
                   <img src={PhoneIcon} /> 076 932 1191
                 </div>
               </div>
-              <div className="contact-logo">
+              <div
+                className="contact-logo"
+                data-aos="fade-right"
+                data-aos-duration="1000"
+                data-aos-delay="2000"
+              >
                 <img src={Logo} />
               </div>
             </div>
-            <div className="contact-form">
+            <div
+              className="contact-form"
+              data-aos="fade-left"
+              data-aos-duration="1000"
+              data-aos-delay="500"
+            >
               <Grid container spacing={2}>
                 <Grid item xs={6}>
                   <TextField
@@ -110,7 +142,12 @@ export default function ContactPage() {
         </div>
       </section>
       <section className="map-section">
-        <div className="container map-container">
+        <div
+          className="container map-container"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-delay="500"
+        >
           <div className="mapouter">
             <div className="gmap_canvas">
               <iframe

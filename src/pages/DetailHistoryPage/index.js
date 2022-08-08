@@ -12,10 +12,10 @@ import { useParams } from "react-router-dom";
 import { historyDetailSelector } from "../../store/selectors";
 import userApi from "../../api/userApi";
 import "./style.scss";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { toggleBlur } from "../../components/BlurLoading";
 import { useNavigate } from "react-router-dom";
-export default function DetailHistoryPage({ history }) {
+export default function DetailHistoryPage({ history, modkvl }) {
   const navigate = useNavigate();
   const { id } = useParams();
   let data = useSelector(historyDetailSelector(id));
@@ -78,7 +78,12 @@ export default function DetailHistoryPage({ history }) {
   };
 
   return (
-    <div className="history-container">
+    <div
+      className="history-container"
+      data-aos="fade"
+      data-aos-duration="800"
+      data-aos-delay="100"
+    >
       <section className="history-section">
         <div className="container container-history">
           <h1 className="history-title">Thông tin đơn hàng</h1>
@@ -110,7 +115,7 @@ export default function DetailHistoryPage({ history }) {
             <div className="history-text">
               <span className="history-text--bold">Mã khuyến mãi:</span> {makm}
             </div>
-            {data.tinhtrang === "CHODUYET" && (
+            {data.tinhtrang === "CHODUYET" && modkvl !== 1 ? (
               <div className="button-huy">
                 <Button
                   onClick={handleHuyDon}
@@ -127,6 +132,8 @@ export default function DetailHistoryPage({ history }) {
                   Hủy đơn
                 </Button>
               </div>
+            ) : (
+              <></>
             )}
           </div>
           <h1 className="history-title">Chi tiết đơn hàng</h1>
@@ -207,34 +214,6 @@ export default function DetailHistoryPage({ history }) {
           </div>
         </div>
       </section>
-      <Toaster
-        position="bottom-right"
-        reverseOrder={false}
-        toastOptions={{
-          // Define default options
-          className: "",
-          duration: 3000,
-          style: {
-            color: "#fff",
-            width: "250px",
-            height: "50px",
-            fontSize: "1.1rem",
-          },
-          // Default options for specific types
-          success: {
-            duration: 3000,
-            style: {
-              background: "rgb(56, 142, 60)",
-            },
-          },
-          error: {
-            duration: 3000,
-            style: {
-              background: "rgb(211, 47, 47)",
-            },
-          },
-        }}
-      />
     </div>
   );
 }

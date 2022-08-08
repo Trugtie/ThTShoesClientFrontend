@@ -7,7 +7,12 @@ export default function PayForm({ control, errors }) {
   const user = useSelector(userSelector);
 
   return (
-    <div className="pay-info">
+    <div
+      className="pay-info"
+      data-aos="fade-right"
+      data-aos-duration="800"
+      data-aos-delay="100"
+    >
       <h1 className="pay-title pay-title--left">THÔNG TIN THANH TOÁN</h1>
       <hr />
       <Grid sx={{ padding: "1rem 2rem" }} container spacing={2}>

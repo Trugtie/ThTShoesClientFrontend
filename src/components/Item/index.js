@@ -29,7 +29,12 @@ export default function Item({ id, name, price = 0, img, category }) {
   };
 
   return (
-    <div className="item-container">
+    <div
+      className="item-container"
+      data-aos="zoom-in"
+      data-aos-duration="500"
+      data-aos-delay="100"
+    >
       <Toaster
         position="bottom-right"
         reverseOrder={false}

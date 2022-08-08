@@ -2,30 +2,43 @@ import "./style.scss";
 import Button from "@mui/material/Button";
 import { useNavigate, useLocation } from "react-router-dom";
 
-
-export default function EventItem({id, description, cost, img, startDate, endDate,title}) {
+export default function EventItem({
+  id,
+  description,
+  cost,
+  img,
+  startDate,
+  endDate,
+  title,
+}) {
   let navigate = useNavigate();
   const location = useLocation();
 
- const handleDetail = () => {
-    if(location.pathname === "/")
-    navigate(`homepage/detailEvent/${id}`);
-    else
-    navigate(`${location.pathname}/detailEvent/${id}`);
+  const handleDetail = () => {
+    if (location.pathname === "/") navigate(`homepage/detailEvent/${id}`);
+    else navigate(`${location.pathname}/detailEvent/${id}`);
   };
-  
+
   const start = new Date(startDate);
   const end = new Date(endDate);
 
   return (
-    <div className="item-container item-container--event">
+    <div
+      className="item-container item-container--event"
+      data-aos="zoom-in"
+      data-aos-duration="500"
+      data-aos-delay="100"
+    >
       <div
         className="item-image"
         style={{
           backgroundImage: `url(${img})`,
         }}
       >
-        <div className="event-range">{start.getDate()}/{start.getMonth()+1} -<br/> {end.getDate()}/{end.getMonth()+1}</div>
+        <div className="event-range">
+          {start.getDate()}/{start.getMonth() + 1} -<br /> {end.getDate()}/
+          {end.getMonth() + 1}
+        </div>
       </div>
       <div className="item-description">
         <div className="item-title item-title--event">{title}</div>

@@ -59,7 +59,12 @@ export default function AccountForm() {
   };
 
   return (
-    <div className="pay-order pay-order--person">
+    <div
+      className="pay-order pay-order--person"
+      data-aos="fade"
+      data-aos-duration="800"
+      data-aos-delay="300"
+    >
       <form onSubmit={handleSubmit(onSubmit)}>
         <h1 className="pay-title pay--left">ĐỔI MẬT KHẨU</h1>
         <hr />

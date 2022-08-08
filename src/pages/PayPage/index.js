@@ -210,7 +210,7 @@ export default function PayPage() {
           className: "",
           duration: 3000,
           style: {
-            textAlign:"left",
+            textAlign: "left",
             color: "#fff",
             width: "250px",
             height: "auto",
@@ -235,7 +235,12 @@ export default function PayPage() {
         <form key={1} onSubmit={handleSubmit(onSubmit)}>
           <div className="container container--pay">
             <PayForm control={control} errors={errors} />
-            <div className="pay-order">
+            <div
+              className="pay-order"
+              data-aos="fade-left"
+              data-aos-duration="800"
+              data-aos-delay="100"
+            >
               <h1 className="pay-title">THÔNG TIN ĐƠN HÀNG</h1>
               <hr />
               <TableContainer sx={{ padding: ".5rem 2rem" }}>

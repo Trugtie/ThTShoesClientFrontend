@@ -64,7 +64,12 @@ export default function HistoryOrderPage() {
         <LoadingSpinner />
       ) : (
         <section className="cart-section">
-          <div className="container">
+          <div
+            className="container"
+            data-aos="fade"
+            data-aos-duration="800"
+            data-aos-delay="200"
+          >
             <TableContainer component={Paper}>
               <Table sx={{ minWidth: 700 }} aria-label="customized table">
                 <TableHead>
