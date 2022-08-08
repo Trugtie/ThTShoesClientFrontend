@@ -15,7 +15,7 @@ import {
   giayBestSellsSelector,
   phuKienLatestSelector,
 } from "../../store/selectors";
-
+import { Toaster } from "react-hot-toast";
 
 export default function HomePage() {
   const shoesLastest = useSelector(giayLatestSelector);
@@ -23,6 +23,28 @@ export default function HomePage() {
   const phuKienLatest = useSelector(phuKienLatestSelector);
   return (
     <div className="homepage-container">
+      <Toaster
+        position="bottom-right"
+        reverseOrder={false}
+        toastOptions={{
+          // Define default options
+          className: "",
+          duration: 3000,
+          style: {
+            color: "#fff",
+            width: "300px",
+            height: "50px",
+            fontSize: "1.1rem",
+          },
+          // Default options for specific types
+          success: {
+            duration: 3000,
+            style: {
+              background: "rgb(56, 142, 60)",
+            },
+          },
+        }}
+      />
       {/* Hero */}
       <section className="hero-section">
         <div className="container">

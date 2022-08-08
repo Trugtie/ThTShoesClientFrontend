@@ -1,6 +1,9 @@
 .item-container {
   width: 331px;
-  height: 346px;
+  height: 365px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: white;
 }
 
@@ -30,4 +33,5 @@
 .item-button-group {
   display: flex;
   justify-content: space-around;
+  margin-bottom: .5rem;
 }

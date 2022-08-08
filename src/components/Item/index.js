@@ -4,7 +4,7 @@ import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutl
 import { useNavigate, useLocation } from "react-router-dom";
 import cartSlice from "../../pages/CartPage/cartSlice";
 import { useDispatch } from "react-redux";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 
 export default function Item({ id, name, price = 0, img, category }) {
@@ -21,7 +21,7 @@ export default function Item({ id, name, price = 0, img, category }) {
       category: category,
     };
     dispatch(cartSlice.actions.addCart(item));
-    toast.success(`Đã thêm ${name} vào giỏ hàng ! `);
+    toast.success(`Đã thêm ${id} vào giỏ hàng ! `);
   };
   let navigate = useNavigate();
   const handleDetail = () => {
@@ -38,28 +38,6 @@ export default function Item({ id, name, price = 0, img, category }) {
       whileHover={{ scale: 1.05 }}
       className="item-container"
     >
-      <Toaster
-        position="bottom-right"
-        reverseOrder={false}
-        toastOptions={{
-          // Define default options
-          className: "",
-          duration: 3000,
-          style: {
-            color: "#fff",
-            width: "300px",
-            height: "50px",
-            fontSize: "1.1rem",
-          },
-          // Default options for specific types
-          success: {
-            duration: 3000,
-            style: {
-              background: "rgb(56, 142, 60)",
-            },
-          },
-        }}
-      />
       <div
         className="item-image"
         style={{

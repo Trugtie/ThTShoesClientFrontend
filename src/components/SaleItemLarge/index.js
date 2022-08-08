@@ -26,8 +26,8 @@ export default function SaleItemLarge({ itemData }) {
           {itemData.tieude}{" "}
           <span className="sale-cost">GIẢM {itemData.giatrigiam}%</span> <br />
           <span className="sale-time">
-            {startDate.getDate()}/{startDate.getMonth()} - {endDate.getDate()}/
-            {endDate.getMonth()}
+            {startDate.getDate()}/{startDate.getMonth()+1} - {endDate.getDate()}/
+            {endDate.getMonth()+1}
           </span>
         </div>
         <div className="sale-button">

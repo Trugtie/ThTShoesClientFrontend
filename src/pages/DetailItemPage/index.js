@@ -97,8 +97,8 @@ export default function DetailItemPage() {
         };
     dispatch(cartSlice.actions.addCart(item));
     id.includes("PK")
-      ? toast.success(`Đã thêm ${accessory.tenpk} vào giỏ hàng ! `)
-      : toast.success(`Đã thêm ${shoes.tengiay} vào giỏ hàng ! `);
+      ? toast.success(`Đã thêm ${accessory.mapk} vào giỏ hàng ! `)
+      : toast.success(`Đã thêm ${shoes.magiay} vào giỏ hàng ! `);
   };
 
   const handleGoback = () => {
