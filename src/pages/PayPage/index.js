@@ -176,11 +176,17 @@ export default function PayPage() {
           toggleBlur();
           const data = response.data;
           const dateEnd = new Date(data.ngaykt);
+          const dateStart = new Date(data.ngaybd);
           const dateNow = new Date();
           if (dateNow > dateEnd) {
             toast.error("Mã KM đã hết hạn !");
             reset2();
-          } else {
+          } 
+          else if(dateNow < dateStart){
+            toast.error("Mã KM chưa tới hạn sử dụng !");
+            reset2();
+          }
+          else {
             setVoucher(response.data.makm);
             setTotalVoucher(
               totalCart - totalCart * (response.data.giatrigiam / 100)
