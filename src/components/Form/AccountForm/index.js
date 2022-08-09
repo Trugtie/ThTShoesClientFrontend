@@ -195,34 +195,6 @@ export default function AccountForm() {
             </Button>
           </Grid>
         </Grid>
-        <Toaster
-          position="bottom-right"
-          reverseOrder={false}
-          toastOptions={{
-            // Define default options
-            className: "",
-            duration: 3000,
-            style: {
-              color: "#fff",
-              width: "250px",
-              height: "50px",
-              fontSize: "1.1rem",
-            },
-            // Default options for specific types
-            success: {
-              duration: 3000,
-              style: {
-                background: "rgb(56, 142, 60)",
-              },
-            },
-            error: {
-              duration: 3000,
-              style: {
-                background: "rgb(211, 47, 47)",
-              },
-            },
-          }}
-        />
       </form>
     </div>
   );
