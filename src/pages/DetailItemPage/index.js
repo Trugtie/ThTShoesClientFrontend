@@ -293,6 +293,7 @@ function returnCompomentShoes(
   handleClose,
   handleChangeColor
 ) {
+  console.log(shoes);
   return shoes === null ? (
     <LoadingSpiner />
   ) : (
@@ -378,11 +379,16 @@ function returnCompomentShoes(
                 : shoes.loaigiayHangDanhmuc.danhmuc.tendanhmuc.toUpperCase()}
             </div>
             <div className="label__type">
-              {"LOẠI " + shoes.loaigiayHangDanhmuc.loaigiay == null
+              {shoes.loaigiayHangDanhmuc.loaigiay == null
                 ? null
-                : shoes.loaigiayHangDanhmuc.loaigiay.tenloai.toUpperCase()}
+                : "LOẠI " +
+                  shoes.loaigiayHangDanhmuc.loaigiay.tenloai.toUpperCase()}
             </div>
-            <div className="label__name">ADIDAS</div>
+            <div className="label__name">
+              {shoes.loaigiayHangDanhmuc.hang == null
+                ? null
+                : shoes.loaigiayHangDanhmuc.hang.tenhang.toUpperCase()}
+            </div>
           </div>
         </div>
         <div className="detail-info__more">
